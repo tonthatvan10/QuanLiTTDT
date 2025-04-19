@@ -1,0 +1,62 @@
+﻿@model TrungTamQuanLiDT.ViewModel.LoginViewModel
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860\
+*@
+
+@{
+    Layout = "~/Views/Shared/_AuthenticationLayout.cshtml";
+    ViewData["Title"] = "Login";
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">@ViewData["Title"]</h2>
+            <hr />
+
+            <!-- Form đăng nhập -->
+            <form asp-action="Login" asp-controller="Authentication" method="post">
+                <!-- Hiển thị lỗi tổng hợp (nếu có) -->
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <!-- TaiKhoan -->
+                <div class="form-group">
+                    <label asp-for="TaiKhoan" class="control-label"></label>
+                    <input asp-for="TaiKhoan" class="form-control" placeholder="Nhập email" />
+                    <span asp-validation-for="TaiKhoan" class="text-danger"></span>
+                </div>
+
+                <!-- Mật khẩu -->
+                <div class="form-group">
+                    <label asp-for="MatKhau" class="control-label"></label>
+                    <input asp-for="MatKhau" type="password" class="form-control" placeholder="Nhập mật khẩu" />
+                    <span asp-validation-for="MatKhau" class="text-danger"></span>
+                </div>
+
+                <!-- Nhớ mật khẩu -->
+                <div class="form-group form-check">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label"></label>
+                </div>
+
+                <!-- Nút submit -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                </div>
+
+                <!-- Liên kết phụ (Quên mật khẩu/Đăng ký) -->
+                <div class="text-center">
+                    <a asp-action="ForgotPassword">Quên mật khẩu?</a> |
+                    <a asp-action="Register">Đăng ký tài khoản</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Script validation phía client -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

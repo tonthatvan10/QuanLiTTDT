@@ -15,7 +15,7 @@ namespace TrungTamQuanLiDT.Models
         [Required] public string Email { get; set; } = string.Empty;
         [Required] public string SDT { get; set; } = string.Empty;
         [Required] public DateTime NgaySinh{ get; set; }
-        [Required] UserRole Role { get; set; } = UserRole.HocVien;
+        [Required] public UserRole Role { get; set; } = UserRole.HocVien;
 
         public ICollection<DangKyKhoaHocModel> DangKyMonHocs { get; set; } = new List<DangKyKhoaHocModel>();
 
