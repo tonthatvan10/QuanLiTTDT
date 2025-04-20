@@ -3,44 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\views\\authentication\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:views\\authentication\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\controllers\\khoahocmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:controllers\\khoahocmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\controllers\\hocviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:controllers\\hocviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\models\\khoahocmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:models\\khoahocmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\viewmodel\\admindashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:viewmodel\\admindashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\viewmodel\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:viewmodel\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,15 +26,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\Admin\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\Admin\\Index.cshtml",
+              "RelativeToolTip": "Views\\Admin\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-20T16:23:06.96Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -68,127 +49,44 @@
               "RelativeDocumentMoniker": "Views\\Authentication\\Login.cshtml",
               "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\Authentication\\Login.cshtml",
               "RelativeToolTip": "Views\\Authentication\\Login.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-20T15:35:23.164Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "KhoaHocModelsController.cs",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\KhoaHocModelsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\KhoaHocModelsController.cs",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\KhoaHocModelsController.cs",
-              "RelativeToolTip": "Controllers\\KhoaHocModelsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T15:14:22.186Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "KhoaHocModel.cs",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Models\\KhoaHocModel.cs",
-              "RelativeDocumentMoniker": "Models\\KhoaHocModel.cs",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Models\\KhoaHocModel.cs",
-              "RelativeToolTip": "Models\\KhoaHocModel.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T15:13:51.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\Admin\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Admin\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\Admin\\Index.cshtml",
-              "RelativeToolTip": "Views\\Admin\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-20T15:09:23.401Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthenticationController.cs",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\AuthenticationController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthenticationController.cs",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\AuthenticationController.cs",
-              "RelativeToolTip": "Controllers\\AuthenticationController.cs",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAIwI0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T15:01:30.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T15:02:50.733Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-20T16:22:57.681Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAA5AAAAAAAAAA==",
+              "Title": "AuthenticationController.cs",
+              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\AuthenticationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthenticationController.cs",
+              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\AuthenticationController.cs",
+              "RelativeToolTip": "Controllers\\AuthenticationController.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T15:12:49.47Z",
+              "WhenOpened": "2025-04-20T16:22:44.474Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HocVienController.cs",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\HocVienController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HocVienController.cs",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\HocVienController.cs",
-              "RelativeToolTip": "Controllers\\HocVienController.cs",
+              "DocumentIndex": 3,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\ViewModel\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\LoginViewModel.cs",
+              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\ViewModel\\LoginViewModel.cs",
+              "RelativeToolTip": "ViewModel\\LoginViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T15:02:51.56Z",
+              "WhenOpened": "2025-04-20T16:22:41.235Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AdminDashboardViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\ViewModel\\AdminDashboardViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModel\\AdminDashboardViewModel.cs",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\ViewModel\\AdminDashboardViewModel.cs",
-              "RelativeToolTip": "ViewModel\\AdminDashboardViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T15:13:25.74Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T15:10:25.643Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             }
           ]
         }

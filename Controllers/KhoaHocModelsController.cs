@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrungTamQuanLiDT.Data;
 using TrungTamQuanLiDT.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrungTamQuanLiDT.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class KhoaHocModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
