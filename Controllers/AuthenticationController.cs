@@ -9,11 +9,11 @@ using System.Security.Claims;
 
 namespace TrungTamQuanLiDT.Controllers
 {
-    public class AuthenticantionController : Controller
+    public class AuthenticationController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AuthenticantionController(ApplicationDbContext context)
+        public AuthenticationController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -29,7 +29,63 @@ namespace TrungTamQuanLiDT.Controllers
             return View();
         }
 
-        // GET: Account/Login
+        //GET: Authentication/Register
+        public IActionResult Register()
+        {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin"))
+                    return RedirectToAction("Index", "Admin");
+                else if (User.IsInRole("User"))
+                    return RedirectToAction("Index", "User");
+            }
+
+            return View();
+        }
+
+        //POST: Authentication/Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            // Kiểm tra tài khoản tồn tại
+            if (_context.HocViens.Any(u => u.TaiKhoan == model.TaiKhoan))
+            {
+                ModelState.AddModelError("TaiKhoan", "Tài khoản đã được sử dụng");
+                return View(model);
+            }
+
+            // Tạo user mới
+            var newUser = new UserModel
+            {
+                TaiKhoan = model.TaiKhoan,
+                MatKhau = BCrypt.Net.BCrypt.HashPassword(model.MatKhau),
+                Role = UserModel.UserRole.HocVien,
+            };
+
+            try
+            {
+                _context.HocViens.Add(newUser);
+                await _context.SaveChangesAsync();
+
+                // Thêm thông báo thành công và chuyển hướng về login
+                TempData["RegisterSuccess"] = "Đăng ký thành công! Vui lòng đăng nhập.";
+                return RedirectToAction("Login", "Authentication"); // Thay "Login" bằng tên action đăng nhập của bạn
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Lỗi hệ thống: " + ex.Message);
+                return View(model);
+            }
+        }
+
+
+        // GET: Authenticantion/Login
         public IActionResult Login()
         {
             if (User.Identity != null && User.Identity.IsAuthenticated)
@@ -42,19 +98,13 @@ namespace TrungTamQuanLiDT.Controllers
             return View();
         }
 
-        // POST: Account/Login
+        // POST: Authentication/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid) return View(model);
-                // ... logic đăng nhập ...
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "Lỗi hệ thống: " + ex.Message);
                 return View(model);
             }
 
@@ -79,16 +129,16 @@ namespace TrungTamQuanLiDT.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
             // Điều hướng người dùng tới trang tương ứng với phân quyền
-            if (user.Role.ToString() == "Admin")
+            if (user.Role == UserModel.UserRole.Admin)
             {
                 return RedirectToAction("Index", "Admin");
             }
-            else if (user.Role.ToString() == "HocVien")
+            else if (user.Role == UserModel.UserRole.HocVien)
             {
                 return RedirectToAction("Index", "HocVien");
             }
 
-            return RedirectToAction("Home");
+            return RedirectToAction("Index", "Home");
 
         }
 
