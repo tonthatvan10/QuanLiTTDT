@@ -6,6 +6,7 @@ using BCrypt.Net;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using static TrungTamQuanLiDT.Models.UserModel;
 
 namespace TrungTamQuanLiDT.Controllers
 {
@@ -95,7 +96,7 @@ namespace TrungTamQuanLiDT.Controllers
                 else if (User.IsInRole("HocVien"))
                     return RedirectToAction("Index", "HocVien");
             }
-            return View();
+            return View("~/Views/Authentication/Login.cshtml");
         }
 
         // POST: Authentication/Login
@@ -129,17 +130,12 @@ namespace TrungTamQuanLiDT.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
             // Điều hướng người dùng tới trang tương ứng với phân quyền
-            if (user.Role == UserModel.UserRole.Admin)
+            return user.Role switch
             {
-                return RedirectToAction("Index", "Admin");
-            }
-            else if (user.Role == UserModel.UserRole.HocVien)
-            {
-                return RedirectToAction("Index", "HocVien");
-            }
-
-            return RedirectToAction("Index", "Home");
-
+                UserRole.Admin => RedirectToAction("Index", "Admin"),
+                UserRole.HocVien => RedirectToAction("Index", "HocVien"),
+                _ => RedirectToAction("Index", "Home")
+            };
         }
 
 

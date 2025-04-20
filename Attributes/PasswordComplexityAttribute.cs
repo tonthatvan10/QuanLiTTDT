@@ -6,11 +6,12 @@ namespace TrungTamQuanLiDT.Attributes
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var password = value.ToString();
-            if (string.IsNullOrEmpty(password))
+            if (value == null || string.IsNullOrEmpty(value.ToString()))
             {
                 return new ValidationResult("Mật khẩu không được để trống");
             }
+            var password = value.ToString();
+            
             if (password.Length < 8 && password.Length > 18)
             {
                 return new ValidationResult("Mật khẩu phải có từ 8 đến 18 ký tự");

@@ -7,7 +7,7 @@ namespace TrungTamQuanLiDT.ViewModel
     {
         [Display(Name = "Tên đăng nhập")]
         [Required(ErrorMessage = "Vui lòng nhập tên đăng nhập")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Tên đăng nhập phải từ 5 đến 50 ký tự")]
+        [StringLength(18, MinimumLength = 5, ErrorMessage = "Tên đăng nhập phải từ 5 đến 18 ký tự")]
         public string TaiKhoan { get; set; } = string.Empty;
 
         [Display(Name = "Mật khẩu")]

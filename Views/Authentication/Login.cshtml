@@ -5,8 +5,12 @@
 *@
 
 @{
-
 }
+
+<div style="display: flex; justify-content: center;">
+    <h2>Đăng nhập</h2>
+</div>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -19,33 +23,33 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <!-- TaiKhoan -->
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 10px" >
                     <label asp-for="TaiKhoan" class="control-label"></label>
                     <input asp-for="TaiKhoan" class="form-control" placeholder="Nhập email" />
                     <span asp-validation-for="TaiKhoan" class="text-danger"></span>
                 </div>
 
                 <!-- Mật khẩu -->
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 10px">
                     <label asp-for="MatKhau" class="control-label"></label>
                     <input asp-for="MatKhau" type="password" class="form-control" placeholder="Nhập mật khẩu" />
                     <span asp-validation-for="MatKhau" class="text-danger"></span>
                 </div>
 
                 <!-- Nhớ mật khẩu -->
-                <div class="form-group form-check">
+                <div class="form-group form-check" style="margin-bottom: 10px">
                     <input asp-for="RememberMe" class="form-check-input" />
                     <label asp-for="RememberMe" class="form-check-label"></label>
                 </div>
 
                 <!-- Nút submit -->
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 10px">
                     <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                 </div>
 
                 <!-- Liên kết phụ (Quên mật khẩu/Đăng ký) -->
-                <div class="text-center">
-                    <a asp-action="ForgotPassword">Quên mật khẩu?</a> |
+                <div class="text-center" style="margin-bottom: 10px">
+                    <a asp-controller="Home" asp-action="Index">Quên mật khẩu?</a> |
                     <a asp-action="Register">Đăng ký tài khoản</a>
                 </div>
             </form>

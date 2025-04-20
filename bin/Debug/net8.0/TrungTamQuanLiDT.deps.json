@@ -9,6 +9,7 @@
       "TrungTamQuanLiDT/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "bootstrap": "5.3.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.4",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.7"
@@ -60,6 +61,7 @@
           }
         }
       },
+      "bootstrap/5.3.5": {},
       "Humanizer/2.14.1": {
         "dependencies": {
           "Humanizer.Core.af": "2.14.1",
@@ -2083,6 +2085,13 @@
       "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
       "path": "bcrypt.net-next/4.0.3",
       "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
+    },
+    "bootstrap/5.3.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fx+DwbG2Q9B1f+r95NVoGoIXCiumHnH8TBF45bSepHFl2PZYNYy5/EruA9vQpQkVaMDXsqAp2sUVvs2U6Avm3g==",
+      "path": "bootstrap/5.3.5",
+      "hashPath": "bootstrap.5.3.5.nupkg.sha512"
     },
     "Humanizer/2.14.1": {
       "type": "package",
