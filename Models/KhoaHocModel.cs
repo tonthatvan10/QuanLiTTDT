@@ -12,6 +12,7 @@ namespace TrungTamQuanLiDT.Models
         [Required] public string TenKhoaHoc { get; set; } = string.Empty;
         [Required] public string GiangVien { get; set; } = string.Empty;
         [Required] public DateTime ThoiGianKhaiGiang { get; set; }
+        [Required] public DateTime ThoiGianKetThuc { get; set; }
         [Required] public decimal HocPhi { get; set; }
         [Required] public int SoLuongHocVienToiDa { get; set; }
 

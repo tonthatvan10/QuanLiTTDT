@@ -4,8 +4,7 @@ namespace TrungTamQuanLiDT.ViewModel
 {
     public class LoginViewModel
     {
-        [Key] public int Id { get; set; }
-
+        [Key] public int Id { get; set; } = 0;
         [Display(Name = "Tên đăng nhập")]
         [Required(ErrorMessage = "Tên đăng nhập không được để trống")]
         public string TaiKhoan { get; set; } = string.Empty;

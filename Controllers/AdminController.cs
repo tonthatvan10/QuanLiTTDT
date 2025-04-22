@@ -25,7 +25,7 @@ namespace TrungTamQuanLiDT.Controllers
             var model = new AdminDashboardViewModel
             {
                 SoLuongKhoaHoc = await _context.KhoaHocs.CountAsync(),
-                SoLuongNguoiDung = await _context.HocViens.CountAsync(),
+                SoLuongHocVien = await _context.HocViens.CountAsync(),
             };
 
             return View(model);

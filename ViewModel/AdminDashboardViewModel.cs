@@ -5,6 +5,6 @@ namespace TrungTamQuanLiDT.ViewModel
     public class AdminDashboardViewModel
     {
         public int SoLuongKhoaHoc { get; set; }
-        public int SoLuongNguoiDung { get; set; }
+        public int SoLuongHocVien { get; set; }
     }
 }

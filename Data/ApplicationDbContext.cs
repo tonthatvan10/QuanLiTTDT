@@ -43,13 +43,13 @@ namespace TrungTamQuanLiDT.Data
             );
 
             modelBuilder.Entity<KhoaHocModel>().HasData(
-                new KhoaHocModel { MaKhoaHoc = 1, TenKhoaHoc = "Lập trình C# cơ bản", GiangVien = "Nguyễn Văn A", ThoiGianKhaiGiang = new DateTime(2025, 5, 1), HocPhi = 2500000, SoLuongHocVienToiDa = 30 },
-                new KhoaHocModel { MaKhoaHoc = 2, TenKhoaHoc = "ASP.NET Core MVC nâng cao", GiangVien = "Trần Thị B", ThoiGianKhaiGiang = new DateTime(2025, 5, 15), HocPhi = 3200000, SoLuongHocVienToiDa = 25 },
-                new KhoaHocModel { MaKhoaHoc = 3, TenKhoaHoc = "Cơ sở dữ liệu với SQL Server", GiangVien = "Lê Văn C", ThoiGianKhaiGiang = new DateTime(2025, 6, 1), HocPhi = 2700000, SoLuongHocVienToiDa = 35 },
-                new KhoaHocModel { MaKhoaHoc = 4, TenKhoaHoc = "Phát triển Web Fullstack", GiangVien = "Phạm Thị D", ThoiGianKhaiGiang = new DateTime(2025, 6, 10), HocPhi = 5000000, SoLuongHocVienToiDa = 20 },
-                new KhoaHocModel { MaKhoaHoc = 5, TenKhoaHoc = "Thiết kế giao diện với HTML/CSS", GiangVien = "Hoàng Văn E", ThoiGianKhaiGiang = new DateTime(2025, 5, 25), HocPhi = 1800000, SoLuongHocVienToiDa = 40 },
-                new KhoaHocModel { MaKhoaHoc = 6, TenKhoaHoc = "Lập trình Python cơ bản", GiangVien = "Đặng Thị F", ThoiGianKhaiGiang = new DateTime(2025, 6, 20), HocPhi = 2600000, SoLuongHocVienToiDa = 30 },
-                new KhoaHocModel { MaKhoaHoc = 7, TenKhoaHoc = "Kỹ thuật phân tích hệ thống", GiangVien = "Bùi Văn G", ThoiGianKhaiGiang = new DateTime(2025, 7, 1), HocPhi = 2900000, SoLuongHocVienToiDa = 25 }
+                new KhoaHocModel { MaKhoaHoc = 1, TenKhoaHoc = "Lập trình C# cơ bản", GiangVien = "Nguyễn Văn A", ThoiGianKhaiGiang = new DateTime(2025, 5, 1), ThoiGianKetThuc = new DateTime(2025, 7, 1), HocPhi = 2500000, SoLuongHocVienToiDa = 30 },
+                new KhoaHocModel { MaKhoaHoc = 2, TenKhoaHoc = "ASP.NET Core MVC nâng cao", GiangVien = "Trần Thị B", ThoiGianKhaiGiang = new DateTime(2025, 5, 15), ThoiGianKetThuc = new DateTime(2025, 7, 15), HocPhi = 3200000, SoLuongHocVienToiDa = 25 },
+                new KhoaHocModel { MaKhoaHoc = 3, TenKhoaHoc = "Cơ sở dữ liệu với SQL Server", GiangVien = "Lê Văn C", ThoiGianKhaiGiang = new DateTime(2025, 6, 1), ThoiGianKetThuc = new DateTime(2025, 8, 1), HocPhi = 2700000, SoLuongHocVienToiDa = 35 },
+                new KhoaHocModel { MaKhoaHoc = 4, TenKhoaHoc = "Phát triển Web Fullstack", GiangVien = "Phạm Thị D", ThoiGianKhaiGiang = new DateTime(2025, 6, 10), ThoiGianKetThuc = new DateTime(2025, 8, 10), HocPhi = 5000000, SoLuongHocVienToiDa = 20 },
+                new KhoaHocModel { MaKhoaHoc = 5, TenKhoaHoc = "Thiết kế giao diện với HTML/CSS", GiangVien = "Hoàng Văn E", ThoiGianKhaiGiang = new DateTime(2025, 5, 25), ThoiGianKetThuc = new DateTime(2025, 7, 25), HocPhi = 1800000, SoLuongHocVienToiDa = 40 },
+                new KhoaHocModel { MaKhoaHoc = 6, TenKhoaHoc = "Lập trình Python cơ bản", GiangVien = "Đặng Thị F", ThoiGianKhaiGiang = new DateTime(2025, 6, 20), ThoiGianKetThuc = new DateTime(2025, 8, 20), HocPhi = 2600000, SoLuongHocVienToiDa = 30 },
+                new KhoaHocModel { MaKhoaHoc = 7, TenKhoaHoc = "Kỹ thuật phân tích hệ thống", GiangVien = "Bùi Văn G", ThoiGianKhaiGiang = new DateTime(2025, 7, 1), ThoiGianKetThuc = new DateTime(2025, 9, 1), HocPhi = 2900000, SoLuongHocVienToiDa = 25 }
             );
         }
     }

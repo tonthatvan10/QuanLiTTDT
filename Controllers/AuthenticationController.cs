@@ -65,7 +65,7 @@ namespace TrungTamQuanLiDT.Controllers
             var newUser = new UserModel
             {
                 TaiKhoan = model.TaiKhoan,
-                MatKhau = BCrypt.Net.BCrypt.HashPassword(model.MatKhau),
+                MatKhau = model.MatKhau,
                 Role = UserModel.UserRole.HocVien,
             };
 
@@ -110,7 +110,7 @@ namespace TrungTamQuanLiDT.Controllers
             }
 
             var user = _context.HocViens.FirstOrDefault(u => u.TaiKhoan == model.TaiKhoan);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(model.MatKhau, user.MatKhau))
+            if (user == null || user.MatKhau != model.MatKhau)
             {
                 ModelState.AddModelError(string.Empty, "Tên đăng nhập hoặc mật khẩu không đúng.");
                 return View(model);
@@ -120,7 +120,7 @@ namespace TrungTamQuanLiDT.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.TaiKhoan),
-                new Claim(ClaimTypes.Role, user.Role.ToString())  // Lưu role của người dùng
+                new Claim(ClaimTypes.Role,  Enum.GetName(typeof(UserRole), user.Role))  // Lưu role của người dùng
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -145,7 +145,7 @@ namespace TrungTamQuanLiDT.Controllers
             // Đăng xuất và xoá cookie xác thực
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             TempData["LoginSuccess"] = "Bạn đã đăng xuất thành công.";
-            return RedirectToAction("Index", "Authentication");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
