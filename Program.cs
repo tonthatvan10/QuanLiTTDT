@@ -11,7 +11,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(options =>
     {
         options.LoginPath = "/Authentication/Login";
-        options.LoginPath = "/Authentication/Register";
+        //options.LoginPath = "/Authentication/Register";
         //options.AccessDeniedPath = "/Home/AccessDenied";
     });
 

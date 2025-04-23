@@ -7,14 +7,20 @@ namespace TrungTamQuanLiDT.Models
 {
     public class DangKyKhoaHocModel
     {
+        public enum TrangThaiDangKy
+        {
+            DangCho = 0, // Chờ xác nhận
+            DaXacNhan = 1, // Đã xác nhận
+            DaHuy = 2 // Đã hủy
+        }
         [Key] public int MaDangKy { get; set; }
         [ForeignKey("KhoaHoc")] public int MaKhoaHoc { get; set; }
         [ForeignKey("HocVien")] public int MaHocVien { get; set; }
         [Required] public DateTime NgayDangKy { get; set; }
-        public bool TrangThai { get; set; }
+        public TrangThaiDangKy TrangThai { get; set; } = TrangThaiDangKy.DangCho;
 
         //Navigation properties
-        public KhoaHocModel KhoaHoc { get; set; } = new KhoaHocModel();
-        public UserModel HocVien { get; set; } = new UserModel();
+        public KhoaHocModel? KhoaHoc { get; set; } = new KhoaHocModel();
+        public UserModel? HocVien { get; set; } = new UserModel();
     }
 }

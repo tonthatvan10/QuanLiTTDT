@@ -51,6 +51,27 @@ namespace TrungTamQuanLiDT.Data
                 new KhoaHocModel { MaKhoaHoc = 6, TenKhoaHoc = "Lập trình Python cơ bản", GiangVien = "Đặng Thị F", ThoiGianKhaiGiang = new DateTime(2025, 6, 20), ThoiGianKetThuc = new DateTime(2025, 8, 20), HocPhi = 2600000, SoLuongHocVienToiDa = 30 },
                 new KhoaHocModel { MaKhoaHoc = 7, TenKhoaHoc = "Kỹ thuật phân tích hệ thống", GiangVien = "Bùi Văn G", ThoiGianKhaiGiang = new DateTime(2025, 7, 1), ThoiGianKetThuc = new DateTime(2025, 9, 1), HocPhi = 2900000, SoLuongHocVienToiDa = 25 }
             );
+
+            modelBuilder.Entity<DangKyKhoaHocModel>()
+                .HasOne(d => d.KhoaHoc)
+                .WithMany(k => k.DangKyHocs)
+                .HasForeignKey(d => d.MaKhoaHoc)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<DangKyKhoaHocModel>()
+                .HasOne(d => d.HocVien)
+                .WithMany(u => u.DangKyHocs)
+                .HasForeignKey(d => d.MaHocVien)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Cấu hình UserModel
+            modelBuilder.Entity<UserModel>()
+                .HasKey(u => u.MaHocVien);
+
+            // Đảm bảo TaiKhoan là duy nhất
+            modelBuilder.Entity<UserModel>()
+                .HasIndex(u => u.TaiKhoan)
+                .IsUnique();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace TrungTamQuanLiDT.Models
         [Required] public DateTime NgaySinh{ get; set; }
         [Required] public UserRole Role { get; set; } = UserRole.HocVien;
 
-        public ICollection<DangKyKhoaHocModel> DangKyMonHocs { get; set; } = new List<DangKyKhoaHocModel>();
+        public ICollection<DangKyKhoaHocModel> DangKyHocs { get; set; } = new List<DangKyKhoaHocModel>();
 
         //Enum
         public enum UserRole

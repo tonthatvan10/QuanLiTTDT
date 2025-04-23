@@ -25,7 +25,7 @@ namespace TrungTamQuanLiDT.Controllers
                 if (User.IsInRole("Admin"))
                     return RedirectToAction("Index", "Admin");
                 else if (User.IsInRole("HocVien"))
-                    return RedirectToAction("Index", "HocVien");
+                    return RedirectToAction("Index", "Home");
             }
             return View();
         }
@@ -94,7 +94,7 @@ namespace TrungTamQuanLiDT.Controllers
                 if (User.IsInRole("Admin"))
                     return RedirectToAction("Index", "Admin");
                 else if (User.IsInRole("HocVien"))
-                    return RedirectToAction("Index", "HocVien");
+                    return RedirectToAction("Index", "Home");
             }
             return View("~/Views/Authentication/Login.cshtml");
         }
@@ -120,8 +120,10 @@ namespace TrungTamQuanLiDT.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.TaiKhoan),
-                new Claim(ClaimTypes.Role,  Enum.GetName(typeof(UserRole), user.Role))  // Lưu role của người dùng
+                new Claim(ClaimTypes.Role,  Enum.GetName(typeof(UserRole), user.Role)),  // Lưu role của người dùng
+                new Claim("MaHocVien", user.MaHocVien.ToString())
             };
+
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
@@ -133,7 +135,7 @@ namespace TrungTamQuanLiDT.Controllers
             return user.Role switch
             {
                 UserRole.Admin => RedirectToAction("Index", "Admin"),
-                UserRole.HocVien => RedirectToAction("Index", "HocVien"),
+                UserRole.HocVien => RedirectToAction("Index", "Home"),
                 _ => RedirectToAction("Index", "Home")
             };
         }

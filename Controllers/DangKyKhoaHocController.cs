@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TrungTamQuanLiDT.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static TrungTamQuanLiDT.Models.DangKyKhoaHocModel;
 
 namespace TrungTamQuanLiDT.Controllers
 {
@@ -74,7 +75,7 @@ namespace TrungTamQuanLiDT.Controllers
             }
 
             model.NgayDangKy = DateTime.Now;
-            model.TrangThai = true;
+            model.TrangThai = TrangThaiDangKy.DangCho;
 
             _context.DangKyHocs.Add(model);
             await _context.SaveChangesAsync();

@@ -3,19 +3,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrungTamQuanLiDT.Data;
 using TrungTamQuanLiDT.Models;
+using TrungTamQuanLiDT.ViewModel;
 
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+
 namespace TrungTamQuanLiDT.Controllers
 {
-    public class HocVienViewInforAndChangeController : Controller
+    public class HocVienFuncController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public HocVienViewInforAndChangeController(ApplicationDbContext context)
+        public HocVienFuncController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -55,14 +57,14 @@ namespace TrungTamQuanLiDT.Controllers
         // Xử lý cập nhật
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HoTen,Email,SDT,NgaySinh")] UserModel hocVien)
+        public async Task<IActionResult> Edit(ChinhSuaThongTinHocVien hocVien)
         {
             if (!ModelState.IsValid)
             {
                 return View(hocVien);
             }
 
-            var hocVienDb = await _context.HocViens.FirstOrDefaultAsync(h => h.MaHocVien == id);
+            var hocVienDb = await _context.HocViens.FirstOrDefaultAsync(h => h.MaHocVien == hocVien.MaHocVien);
 
             if (hocVienDb == null)
             {
@@ -82,13 +84,13 @@ namespace TrungTamQuanLiDT.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!HocVienExists(id))
+                if (!HocVienExists(hocVien.MaHocVien))
                     return NotFound();
                 else
                     throw;
             }
 
-            return RedirectToAction("Index", "HocVienViewInforAndChange");
+            return RedirectToAction("Index", "HocVienFunc");
         }
 
         private bool HocVienExists(int id)

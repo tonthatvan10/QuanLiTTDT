@@ -48,16 +48,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuZ0t5S2hvYUhvY1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ton That Van/Documents/BKDN/Sophomore/.NET/TrungTamQuanLiDT/Views/HocVienViewInforAndChange/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9jVmllblZpZXdJbmZvckFuZENoYW5nZVxFZGl0LmNzaHRtbA==
+[C:/Users/Ton That Van/Documents/BKDN/Sophomore/.NET/TrungTamQuanLiDT/Views/HocVienFunc/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9jVmllbkZ1bmNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ton That Van/Documents/BKDN/Sophomore/.NET/TrungTamQuanLiDT/Views/HocVienViewInforAndChange/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9jVmllblZpZXdJbmZvckFuZENoYW5nZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Ton That Van/Documents/BKDN/Sophomore/.NET/TrungTamQuanLiDT/Views/HocVien/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9jVmllblxJbmRleC5jc2h0bWw=
+[C:/Users/Ton That Van/Documents/BKDN/Sophomore/.NET/TrungTamQuanLiDT/Views/HocVienFunc/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9jVmllbkZ1bmNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ton That Van/Documents/BKDN/Sophomore/.NET/TrungTamQuanLiDT/Views/Home/Index.cshtml]
@@ -94,6 +90,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ton That Van/Documents/BKDN/Sophomore/.NET/TrungTamQuanLiDT/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ton That Van/Documents/BKDN/Sophomore/.NET/TrungTamQuanLiDT/Views/ThongTinKhoaHoc/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdUaW5LaG9hSG9jXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ton That Van/Documents/BKDN/Sophomore/.NET/TrungTamQuanLiDT/Views/UserModels/Create.cshtml]
