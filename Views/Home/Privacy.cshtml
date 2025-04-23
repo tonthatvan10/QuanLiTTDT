@@ -1,7 +1,101 @@
-﻿
+﻿@model IPagedList<TrungTamQuanLiDT.Models.KhoaHocModel>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+
 @{
-    ViewData["Title"] = "Privacy";
+    ViewData["Title"] = "Danh sách khoá học";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var searchString = ViewBag.SearchString as string ?? "";
+    var giangVienSelected = ViewBag.GiangVienSelected as string ?? "";
+    var fromDate = ViewBag.FromDate as string ?? "";
+    var toDate = ViewBag.ToDate as string ?? "";
+    var giangVienList = ViewBag.GiangViens as List<string> ?? new List<string>();
 }
 
 
+<h2>Danh sách Khóa Học</h2>
+
+<form asp-action="Index" method="get" class="mb-4">
+    <div class="form-group">
+        <label for="searchString">Tên khóa học</label>
+        <input type="text" name="searchString" id="searchString" value="@searchString" class="form-control" placeholder="Tìm kiếm...">
+    </div>
+
+    <div class="form-group">
+        <label for="giangVien">Giảng viên</label>
+        <select name="giangVien" id="giangVien" class="form-control">
+            <option value="">-- Tất cả --</option>
+            @foreach (var gv in giangVienList)
+            {
+                if (gv == giangVienSelected)
+                {
+                    <option value="@gv" selected>@gv</option>
+                }
+                else
+                {
+                    <option value="@gv">@gv</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="fromDate">Ngày bắt đầu từ:</label>
+        <input type="date" name="fromDate" id="fromDate" value="@fromDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="toDate">Đến ngày:</label>
+        <input type="date" name="toDate" id="toDate" value="@toDate" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Lọc</button>
+</form>
+
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Tên khóa học</th>
+            <th>Giảng viên</th>
+            <th>Khai giảng</th>
+            <th>Kết thúc</th>
+            <th>Học phí</th>
+            <th>Số HV tối đa</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var khoaHoc in Model)
+        {
+            <tr>
+                <td>@khoaHoc.TenKhoaHoc</td>
+                <td>@khoaHoc.GiangVien</td>
+                <td>@khoaHoc.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</td>
+                <td>@khoaHoc.ThoiGianKetThuc.ToString("dd/MM/yyyy")</td>
+                <td>@khoaHoc.HocPhi.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</td>
+                <td>@khoaHoc.SoLuongHocVienToiDa</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@khoaHoc.MaKhoaHoc" class="btn btn-info btn-sm">Chi tiết</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page,
+        searchString = searchString,
+        giangVien = giangVienSelected,
+        fromDate = fromDate,
+        toDate = toDate
+    }), new PagedListRenderOptions
+    {
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" }
+    })
+</div>

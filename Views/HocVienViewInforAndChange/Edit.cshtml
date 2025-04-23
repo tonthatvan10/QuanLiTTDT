@@ -1,0 +1,43 @@
+﻿@model TrungTamQuanLiDT.Models.UserModel
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin";
+}
+
+<h2 class="text-xl font-semibold mb-4">Chỉnh sửa thông tin cá nhân</h2>
+
+<form method="post" asp-action="Edit" asp-controller="HocVienViewInforAndChange">
+    <input type="hidden" asp-for="MaHocVien" />
+
+    <div class="mb-3">
+        <label asp-for="HoTen" class="form-label"></label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SDT" class="form-label"></label>
+        <input asp-for="SDT" class="form-control" />
+        <span asp-validation-for="SDT" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NgaySinh" class="form-label"></label>
+        <input asp-for="NgaySinh" type="date" class="form-control" />
+        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+    </div>
+    <button type="submit" value="Save" class="btn btn-success">Lưu thay đổi</button>
+    
+    <a asp-action="Index" class="btn btn-secondary ms-2">Hủy</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
