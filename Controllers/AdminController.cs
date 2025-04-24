@@ -24,7 +24,7 @@ namespace TrungTamQuanLiDT.Controllers
                 TongSoKhoaHoc = _context.KhoaHocs.Count(),
                 ThongKeDangKyTheoKhoaHoc = _context.KhoaHocs
                     .Include(k => k.DangKyHocs)
-                    .AsEnumerable() // chuyển sang LINQ in-memory
+                    .AsEnumerable() //LINQ in-memory
                     .GroupBy(k => string.IsNullOrWhiteSpace(k.TenKhoaHoc) ? "[Không rõ tên]" : k.TenKhoaHoc)
                     .ToDictionary(
                         g => g.Key,

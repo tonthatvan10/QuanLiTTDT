@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrungTamQuanLiDT.Models;
 using TrungTamQuanLiDT.Data;
-using X.PagedList; // Thêm namespace này
+using X.PagedList; 
 using X.PagedList.Extensions;
 
 namespace TrungTamQuanLiDT.Controllers
