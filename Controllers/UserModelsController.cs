@@ -20,9 +20,28 @@ namespace TrungTamQuanLiDT.Controllers
         }
 
         // GET: UserModels
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int page = 1, int pageSize = 10)
         {
-            return View(await _context.HocViens.ToListAsync());
+            var query = _context.HocViens.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                query = query.Where(h => h.HoTen.Contains(searchString));
+            }
+
+            var totalItems = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            var hocViens = await query
+                .OrderBy(h => h.HoTen)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.SearchString = searchString;
+
+            return View(hocViens);
         }
 
         // GET: UserModels/Details/5
@@ -142,13 +161,19 @@ namespace TrungTamQuanLiDT.Controllers
             var userModel = await _context.HocViens.FindAsync(id);
             if (userModel != null)
             {
+                // Xóa các bản đăng ký khóa học liên quan
+                var dangKyList = _context.DangKyHocs
+                                         .Where(dk => dk.MaHocVien == id);
+
+                _context.DangKyHocs.RemoveRange(dangKyList);
+
+                // Sau đó xóa học viên
                 _context.HocViens.Remove(userModel);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool UserModelExists(int id)
         {
             return _context.HocViens.Any(e => e.MaHocVien == id);

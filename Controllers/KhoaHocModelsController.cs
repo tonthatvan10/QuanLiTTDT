@@ -22,9 +22,29 @@ namespace TrungTamQuanLiDT.Controllers
         }
 
         // GET: KhoaHocModels
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int page = 1, int pageSize = 10)
         {
-            return View(await _context.KhoaHocs.ToListAsync());
+            var query = _context.KhoaHocs.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                query = query.Where(k => k.TenKhoaHoc.Contains(searchString));
+            }
+
+            var totalItems = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            var khoaHocs = await query
+                .OrderBy(k => k.ThoiGianKhaiGiang)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.SearchString = searchString;
+
+            return View(khoaHocs);
         }
 
         // GET: KhoaHocModels/Details/5
@@ -144,13 +164,23 @@ namespace TrungTamQuanLiDT.Controllers
             var khoaHocModel = await _context.KhoaHocs.FindAsync(id);
             if (khoaHocModel != null)
             {
-                _context.KhoaHocs.Remove(khoaHocModel);
+                var now = DateTime.Now;
+
+                // Kiểm tra điều kiện: chỉ xóa nếu chưa khai giảng hoặc đã kết thúc
+                if (khoaHocModel.ThoiGianKhaiGiang > now || khoaHocModel.ThoiGianKetThuc < now)
+                {
+                    _context.KhoaHocs.Remove(khoaHocModel);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    TempData["Error"] = "Không thể xóa khóa học đang diễn ra.";
+                    return RedirectToAction(nameof(Index));
+                }
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool KhoaHocModelExists(int id)
         {
             return _context.KhoaHocs.Any(e => e.MaKhoaHoc == id);

@@ -20,7 +20,7 @@ namespace TrungTamQuanLiDT.Controllers
             _context = context;
         }
         [Authorize(Roles = "HocVien")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var username = User.Identity?.Name;
             if (string.IsNullOrEmpty(username))
@@ -28,18 +28,21 @@ namespace TrungTamQuanLiDT.Controllers
                 TempData["Message"] = "Bạn cần đăng nhập để xem khóa học đã đăng ký.";
                 return RedirectToAction("Index", "Home");
             }
-            // Lấy thông tin học viên
-            var hocVien = _context.HocViens.FirstOrDefault(h => h.TaiKhoan == username);
+
+            var hocVien = await _context.HocViens.FirstOrDefaultAsync(h => h.TaiKhoan == username);
             if (hocVien == null)
             {
                 TempData["Message"] = "Không tìm thấy thông tin học viên.";
                 return RedirectToAction("Index", "Home");
             }
 
-            var khoaHocDaDangKy = _context.DangKyHocs
+            var khoaHocDaDangKy = await _context.DangKyHocs
                 .Include(dk => dk.KhoaHoc)
-                .Where(dk => dk.MaHocVien == hocVien.MaHocVien && dk.TrangThai != DangKyKhoaHocModel.TrangThaiDangKy.DaHuy)
-                .ToList();
+                .Where(dk => dk.MaHocVien == hocVien.MaHocVien &&
+                             dk.TrangThai != DangKyKhoaHocModel.TrangThaiDangKy.DaHuy)
+                .Select(dk => dk.KhoaHoc) // chỉ lấy thông tin khóa học
+                .Distinct()
+                .ToListAsync();
 
             return View(khoaHocDaDangKy);
         }

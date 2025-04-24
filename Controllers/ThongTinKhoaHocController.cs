@@ -20,6 +20,12 @@ namespace TrungTamQuanLiDT.Controllers
         }
         public IActionResult Details(int id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["Message"] = "Bạn cần đăng nhập để xem chi tiết khóa học.";
+                return RedirectToAction("Login", "Authentication"); // Điều hướng tới trang đăng nhập
+            }
+
             var khoaHoc = _context.KhoaHocs
                 .Include(k => k.DangKyHocs)
                 .FirstOrDefault(k => k.MaKhoaHoc == id);

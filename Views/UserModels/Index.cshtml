@@ -1,70 +1,53 @@
 ﻿@model IEnumerable<TrungTamQuanLiDT.Models.UserModel>
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách học viên";
+    var currentPage = ViewBag.CurrentPage as int? ?? 1;
+    var totalPages = ViewBag.TotalPages as int? ?? 1;
+    var searchString = ViewBag.SearchString as string ?? "";
 }
 
-<h1>Index</h1>
+<h2>Danh sách học viên</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<form method="get" class="mb-3">
+    <input type="text" name="searchString" value="@searchString" placeholder="Tìm theo tên học viên" class="form-control w-25 d-inline-block" />
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
+
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.HoTen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TaiKhoan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MatKhau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SDT)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgaySinh)
-            </th>
-            <th></th>
+            <th>Họ tên</th>
+            <th>Tài khoản</th>
+            <th>Email</th>
+            <th>Ngày sinh</th>
+            <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoTen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaiKhoan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SDT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgaySinh)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MaHocVien">Edit</a> |
-                @if (User.Identity.IsAuthenticated)
-                {
-                    if (User.IsInRole("HocVien")){
-                        <a asp-action="Details" asp-route-id="@item.MaHocVien">Details</a>
-                    }
-                }
-                <a asp-action="Delete" asp-route-id="@item.MaHocVien">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var hocVien in Model)
+        {
+            <tr>
+                <td>@hocVien.HoTen</td>
+                <td>@hocVien.TaiKhoan</td>
+                <td>@hocVien.Email</td>
+                <td>@hocVien.NgaySinh.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@hocVien.MaHocVien">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@hocVien.MaHocVien">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@hocVien.MaHocVien">Xóa</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= totalPages; i++)
+        {
+            <li class="page-item @(i == currentPage ? "active" : "")">
+                <a class="page-link" href="?searchString=@searchString&page=@i">@i</a>
+            </li>
+        }
+    </ul>
+</nav>

@@ -2,11 +2,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center"
-    style="background-image: url('Image/BackgroundHomepage.jpg'); height:100vh; width: 100%; background-size:cover;
-        background-position: center; display: flex; justify-content: center; align-items: center;">
-    <div style="display: flex; flex-direction: column; align-items: center; color: black;">
-        <h1 class="display-4">Chào mừng bạn đến với</h1>
-        <h2 class="display-4">Trung tâm Văn Tôn</h2>
+<div class="bg-image text-center text-white d-flex justify-content-center align-items-center"
+     style="background-image: url('/images/BackgroundHomepage.jpg'); height: 100vh; background-size: cover; background-position: center;">
+
+    <div class="bg-dark bg-opacity-50 p-5 rounded shadow">
+        <h1 class="display-4 mb-3">Chào mừng bạn đến với</h1>
+        <h2 class="display-4 fw-bold">Trung tâm Văn Tôn</h2>
+        <p class="lead mt-3">Nơi kết nối tri thức và đam mê học tập</p>
+
+        <a href="@Url.Action("Privacy", "Home")" class="btn btn-primary btn-lg mt-4">
+            Khám phá ngay
+        </a>
     </div>
 </div>
