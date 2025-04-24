@@ -71,4 +71,4 @@
 </table>
 
 <!-- Phân trang -->
-@Html.PagedListPager(Model, page => Url.Action("Privacy", new { page, searchString = ViewBag.SearchString, giangVien = ViewBag.GiangVienSelected, fromDate = ViewBag.FromDate, toDate = ViewBag.ToDate }))
+@Html.PagedListPager(Model, page => Url.Action("Privacy", new { page, searchString = ViewBag.SearchString, giangVien = ViewBag.GiangVienSelected, fromDate = ViewBag.FromDate,  toDate = ViewBag.ToDate }))

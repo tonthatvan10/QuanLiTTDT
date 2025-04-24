@@ -21,12 +21,40 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <!-- Menu trái -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Thông tin khóa học</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("HocVien"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Thông tin khóa học</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="KhoaHocDaDangKy" asp-action="Index">Các khóa học đã đăng ký</a>
+                                </li>
+
+                            }
+                            else if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Thông tin khóa học</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Thống kê quản trị</a>
+                                </li>
+
+                            }
+                            else{
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Thông tin khóa học</a>
+                                </li>
+                            }
+                        }
+                         
+
                     </ul>
 
                     <!-- Menu phải -->
@@ -61,10 +89,10 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
                                         <li>
-                                            <a class="dropdown-item" asp-controller="Admin" asp-action="ManageStudents">Cập nhật Học viên</a>
+                                            <a class="dropdown-item" asp-controller="UserModels" asp-action="Index">Cập nhật Học viên</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" asp-controller="Admin" asp-action="ManageCourses">Cập nhật Khóa học</a>
+                                            <a class="dropdown-item" asp-controller="KhoaHocModels" asp-action="Index">Cập nhật Khóa học</a>
                                         </li>
                                         <li>
                                             <form method="post" asp-controller="Authentication" asp-action="Logout" class="dropdown-item p-0">

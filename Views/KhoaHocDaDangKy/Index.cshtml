@@ -1,0 +1,30 @@
+﻿@model List<TrungTamQuanLiDT.Models.DangKyKhoaHocModel>
+
+<h2>Danh sách khóa học đã đăng ký</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên khóa học</th>
+            <th>Ngày khai giảng</th>
+            <th>Ngày đăng ký</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.KhoaHoc.TenKhoaHoc</td>
+                <td>@item.KhoaHoc.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</td>
+                <td>@item.NgayDangKy.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <form asp-action="HuyDangKy" method="post">
+                        <input type="hidden" name="maDangKy" value="@item.MaDangKy" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn hủy?');">Hủy đăng ký</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

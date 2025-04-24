@@ -1,9 +1,60 @@
 ﻿@model TrungTamQuanLiDT.ViewModel.AdminDashboardViewModel
+
 @{
-    ViewData["Title"] = "View";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Thống kê quản trị";
 }
 
-<h1>Admin Dashboard</h1>
+<h2 class="mb-4">Bảng điều khiển quản trị</h2>
 
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card text-white bg-primary shadow-sm p-4 rounded">
+            <h5>Tổng số học viên đang đăng ký</h5>
+            <h2>@Model.TongSoHocVienDangKy</h2>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-white bg-success shadow-sm p-4 rounded">
+            <h5>Tổng số khóa học hiện có</h5>
+            <h2>@Model.TongSoKhoaHoc</h2>
+        </div>
+    </div>
+</div>
 
+<div class="card p-4 mb-5 shadow-sm">
+    <h5>Biểu đồ số lượng học viên đăng ký theo từng khóa học</h5>
+    <canvas id="chartHocVien" width="400" height="200"></canvas>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('chartHocVien').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.ThongKeDangKyTheoKhoaHoc.Keys)),
+                datasets: [{
+                    label: 'Số học viên',
+                    data: @Html.Raw(Json.Serialize(Model.ThongKeDangKyTheoKhoaHoc.Values)),
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Số lượng học viên đăng ký theo khóa học'
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+}

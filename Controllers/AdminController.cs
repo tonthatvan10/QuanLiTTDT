@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace TrungTamQuanLiDT.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -14,21 +15,24 @@ namespace TrungTamQuanLiDT.Controllers
         {
             _context = context;
         }
-        [Authorize(Roles = "Admin")]
+
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public async Task<IActionResult> Admin()
-        {
-            var model = new AdminDashboardViewModel
+            var viewModel = new AdminDashboardViewModel
             {
-                SoLuongKhoaHoc = await _context.KhoaHocs.CountAsync(),
-                SoLuongHocVien = await _context.HocViens.CountAsync(),
+                TongSoHocVienDangKy = _context.DangKyHocs.Count(),
+                TongSoKhoaHoc = _context.KhoaHocs.Count(),
+                ThongKeDangKyTheoKhoaHoc = _context.KhoaHocs
+                    .Include(k => k.DangKyHocs)
+                    .AsEnumerable() // chuyển sang LINQ in-memory
+                    .GroupBy(k => string.IsNullOrWhiteSpace(k.TenKhoaHoc) ? "[Không rõ tên]" : k.TenKhoaHoc)
+                    .ToDictionary(
+                        g => g.Key,
+                        g => g.Sum(k => k.DangKyHocs.Count)
+                    )
             };
 
-            return View(model);
+            return View(viewModel);
         }
     }
 }

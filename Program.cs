@@ -12,7 +12,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Authentication/Login";
         //options.LoginPath = "/Authentication/Register";
-        //options.AccessDeniedPath = "/Home/AccessDenied";
+        options.AccessDeniedPath = "/Authentication/AccessDenied";
     });
 
 // Add services to the container.

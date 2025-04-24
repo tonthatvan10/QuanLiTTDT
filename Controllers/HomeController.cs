@@ -25,7 +25,6 @@ namespace TrungTamQuanLiDT.Controllers
             return View();
         }
 
-        [Authorize(Roles = "HocVien")]
         public IActionResult Privacy(string searchString, string giangVien, DateTime? fromDate, DateTime? toDate, int page = 1)
         {
             int pageSize = 3;

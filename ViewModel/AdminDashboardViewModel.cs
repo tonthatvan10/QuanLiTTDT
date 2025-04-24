@@ -4,7 +4,8 @@ namespace TrungTamQuanLiDT.ViewModel
 {
     public class AdminDashboardViewModel
     {
-        public int SoLuongKhoaHoc { get; set; }
-        public int SoLuongHocVien { get; set; }
+        public int TongSoHocVienDangKy { get; set; }
+        public int TongSoKhoaHoc { get; set; }
+        public Dictionary<string, int> ThongKeDangKyTheoKhoaHoc { get; set; } = new();
     }
 }
