@@ -4,6 +4,7 @@
     var currentPage = ViewBag.CurrentPage as int? ?? 1;
     var totalPages = ViewBag.TotalPages as int? ?? 1;
     var searchString = ViewBag.SearchString as string ?? "";
+    var roleFilter = ViewBag.RoleFilter as string ?? "";
 }
 
 <div class="container mt-4">
@@ -15,15 +16,22 @@
     </div>
 
     <form method="get" class="mb-4">
-        <div class="input-group w-50">
-            <input type="text"
-                   name="searchString"
-                   value="@searchString"
-                   placeholder="Tìm theo tên học viên"
-                   class="form-control" />
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-search me-2"></i>Tìm kiếm
-            </button>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <input type="text"
+                       name="searchString"
+                       value="@searchString"
+                       placeholder="Tìm theo tên học viên"
+                       class="form-control" />
+            </div>
+            <div class="col-auto">
+                <select name="roleFilter" class="form-select" asp-items="@ViewBag.RoleList"></select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search me-2"></i>Tìm kiếm
+                </button>
+            </div>
         </div>
     </form>
 
@@ -82,7 +90,7 @@
             @for (int i = 1; i <= totalPages; i++)
             {
                 <li class="page-item @(i == currentPage ? "active" : "")">
-                    <a class="page-link" href="?searchString=@searchString&page=@i">@i</a>
+                    <a class="page-link" href="?searchString=@searchString&roleFilter=@roleFilter&page=@i">@i</a>
                 </li>
             }
         </ul>

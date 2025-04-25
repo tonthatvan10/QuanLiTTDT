@@ -20,13 +20,20 @@ namespace TrungTamQuanLiDT.Controllers
         }
 
         // GET: UserModels
-        public async Task<IActionResult> Index(string searchString, int page = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string searchString, string roleFilter, int page = 1, int pageSize = 10)
         {
             var query = _context.HocViens.AsQueryable();
 
+            // Lọc theo tên học viên
             if (!string.IsNullOrEmpty(searchString))
             {
                 query = query.Where(h => h.HoTen.Contains(searchString));
+            }
+
+            // Lọc theo vai trò
+            if (!string.IsNullOrEmpty(roleFilter) && Enum.TryParse<UserModel.UserRole>(roleFilter, out var role))
+            {
+                query = query.Where(h => h.Role == role);
             }
 
             var totalItems = await query.CountAsync();
@@ -36,6 +43,15 @@ namespace TrungTamQuanLiDT.Controllers
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
+            // Tạo danh sách vai trò cho dropdown
+            ViewBag.RoleFilter = roleFilter;
+            ViewBag.RoleList = new SelectList(new[]
+            {
+                new { Value = "", Text = "Tất cả vai trò" },
+                new { Value = "Admin", Text = "Quản trị" },
+                new { Value = "HocVien", Text = "Học viên" }
+            }, "Value", "Text", roleFilter);
 
             ViewBag.CurrentPage = page;
             ViewBag.TotalPages = totalPages;
