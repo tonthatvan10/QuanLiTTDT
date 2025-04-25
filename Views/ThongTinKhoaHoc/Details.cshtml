@@ -64,9 +64,10 @@
                         <div class="col-md-8">@Model.HocPhi.ToString("C", new System.Globalization.CultureInfo("vi-VN"))</div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-4 fw-semibold" style="color: #2e4b6a;">Số lượng tối đa</div>
-                        <div class="col-md-8">@Model.SoLuongHocVienToiDa</div>
+                        <div class="col-md-4 fw-semibold" style="color: #2e4b6a;">Số lượng đã đăng ký</div>
+                        <div class="col-md-8">@ViewBag.SoLuongDaDangKy / @Model.SoLuongHocVienToiDa</div>
                     </div>
+                    
 
                     <!-- Nút đăng ký hoặc thông báo -->
                     @if (User.IsInRole("HocVien"))

@@ -22,13 +22,23 @@ namespace TrungTamQuanLiDT.Controllers
         }
 
         // GET: KhoaHocModels
-        public async Task<IActionResult> Index(string searchString, int page = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string searchString, DateTime? startDate, DateTime? endDate, int page = 1, int pageSize = 10)
         {
             var query = _context.KhoaHocs.AsQueryable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
                 query = query.Where(k => k.TenKhoaHoc.Contains(searchString));
+            }
+
+            if (startDate.HasValue)
+            {
+                query = query.Where(k => k.ThoiGianKhaiGiang >= startDate.Value);
+            }
+
+            if (endDate.HasValue)
+            {
+                query = query.Where(k => k.ThoiGianKhaiGiang <= endDate.Value);
             }
 
             var totalItems = await query.CountAsync();
@@ -43,6 +53,8 @@ namespace TrungTamQuanLiDT.Controllers
             ViewBag.CurrentPage = page;
             ViewBag.TotalPages = totalPages;
             ViewBag.SearchString = searchString;
+            ViewBag.StartDate = startDate?.ToString("yyyy-MM-dd");
+            ViewBag.EndDate = endDate?.ToString("yyyy-MM-dd");
 
             return View(khoaHocs);
         }
@@ -162,7 +174,6 @@ namespace TrungTamQuanLiDT.Controllers
             {
                 var now = DateTime.Now;
 
-                // Kiểm tra điều kiện: chỉ xóa nếu chưa khai giảng hoặc đã kết thúc
                 if (khoaHocModel.ThoiGianKhaiGiang > now || khoaHocModel.ThoiGianKetThuc < now)
                 {
                     _context.KhoaHocs.Remove(khoaHocModel);
@@ -177,6 +188,7 @@ namespace TrungTamQuanLiDT.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
         private bool KhoaHocModelExists(int id)
         {
             return _context.KhoaHocs.Any(e => e.MaKhoaHoc == id);

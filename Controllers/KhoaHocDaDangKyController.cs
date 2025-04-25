@@ -59,7 +59,6 @@ namespace TrungTamQuanLiDT.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Đảm bảo người dùng hiện tại là người đăng ký
             var username = User.Identity?.Name;
             var hocVien = _context.HocViens.FirstOrDefault(h => h.TaiKhoan == username);
             if (hocVien == null || dangKy.MaHocVien != hocVien.MaHocVien)

@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<TrungTamQuanLiDT.Models.KhoaHocModel>
+
 @{
     ViewData["Title"] = "Danh sách khóa học";
     var currentPage = ViewBag.CurrentPage as int? ?? 1;
     var totalPages = ViewBag.TotalPages as int? ?? 1;
     var searchString = ViewBag.SearchString as string ?? "";
+    var startDate = ViewBag.StartDate as string ?? "";
+    var endDate = ViewBag.EndDate as string ?? "";
 }
 
 <div class="container mt-4">
@@ -15,15 +18,36 @@
     </div>
 
     <form method="get" class="mb-4">
-        <div class="input-group w-50">
-            <input type="text"
-                   name="searchString"
-                   value="@searchString"
-                   placeholder="Tìm theo tên khóa học"
-                   class="form-control" />
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-search me-2"></i>Tìm kiếm
-            </button>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="form-label">Tên khóa học</label>
+                <input type="text"
+                       name="searchString"
+                       value="@searchString"
+                       placeholder="Tìm theo tên khóa học"
+                       class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="form-label">Từ ngày</label>
+                <input type="date"
+                       name="startDate"
+                       value="@startDate"
+                       class="form-control"
+                       placeholder="Từ ngày khai giảng" />
+            </div>
+            <div class="col-auto">
+                <label class="form-label">Đến ngày</label>
+                <input type="date"
+                       name="endDate"
+                       value="@endDate"
+                       class="form-control"
+                       placeholder="Đến ngày khai giảng" />
+            </div>
+            <div class="col-auto align-self-end">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search me-2"></i>Tìm kiếm
+                </button>
+            </div>
         </div>
     </form>
 
@@ -85,15 +109,34 @@
 
     <nav class="mt-4">
         <ul class="pagination justify-content-center">
+            <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="?searchString=@searchString&startDate=@startDate&endDate=@endDate&page=1" title="Trang đầu tiên">
+                    ««
+                </a>
+            </li>
+            <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="?searchString=@searchString&startDate=@startDate&endDate=@endDate&page=@(currentPage - 1)">
+                    <
+                </a>
+            </li>
             @for (int i = 1; i <= totalPages; i++)
             {
                 <li class="page-item @(i == currentPage ? "active" : "")">
-                    <a class="page-link" href="?searchString=@searchString&page=@i">@i</a>
+                    <a class="page-link" href="?searchString=@searchString&startDate=@startDate&endDate=@endDate&page=@i">@i</a>
                 </li>
             }
+            <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                <a class="page-link" href="?searchString=@searchString&startDate=@startDate&endDate=@endDate&page=@(currentPage + 1)">
+                    >
+                </a>
+            </li>
+            <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                <a class="page-link" href="?searchString=@searchString&startDate=@startDate&endDate=@endDate&page=@totalPages" title="Trang cuối cùng">
+                    »»
+                </a>
+            </li>
         </ul>
     </nav>
-</div>
 
 @section Scripts {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />

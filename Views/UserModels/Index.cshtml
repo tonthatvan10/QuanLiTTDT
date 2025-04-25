@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<TrungTamQuanLiDT.Models.UserModel>
+
 @{
     ViewData["Title"] = "Danh sách học viên";
     var currentPage = ViewBag.CurrentPage as int? ?? 1;
@@ -41,12 +42,12 @@
                 <table class="table table-hover mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>Họ tên</th>
-                            <th>Tài khoản</th>
+                            <th>Họ Tên</th>
+                            <th>Tài Khoản</th>
                             <th>Email</th>
-                            <th>Ngày sinh</th>
-                            <th>Vai trò</th>
-                            <th>Hành động</th>
+                            <th>Ngày Sinh</th>
+                            <th>Vai Trò</th>
+                            <th>Hành Động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,12 +88,32 @@
 
     <nav class="mt-4">
         <ul class="pagination justify-content-center">
+            <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="?searchString=@searchString&roleFilter=@roleFilter&page=1">
+                    &laquo;&laquo;
+                </a>
+            </li>
+            <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="?searchString=@searchString&roleFilter=@roleFilter&page=@(currentPage - 1)">
+                    &lt;
+                </a>
+            </li>
             @for (int i = 1; i <= totalPages; i++)
             {
                 <li class="page-item @(i == currentPage ? "active" : "")">
                     <a class="page-link" href="?searchString=@searchString&roleFilter=@roleFilter&page=@i">@i</a>
                 </li>
             }
+            <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                <a class="page-link" href="?searchString=@searchString&roleFilter=@roleFilter&page=@(currentPage + 1)">
+                    &gt;
+                </a>
+            </li>
+            <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                <a class="page-link" href="?searchString=@searchString&roleFilter=@roleFilter&page=@totalPages">
+                    &raquo;&raquo;
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

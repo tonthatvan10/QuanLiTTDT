@@ -20,37 +20,37 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                         <div class="mb-3">
-                            <label asp-for="HoTen" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Họ tên</label>
                             <input asp-for="HoTen" class="form-control" placeholder="Nhập họ tên" />
                             <span asp-validation-for="HoTen" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="TaiKhoan" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Tài khoản</label>
                             <input asp-for="TaiKhoan" class="form-control" placeholder="Nhập tài khoản" />
                             <span asp-validation-for="TaiKhoan" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="MatKhau" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Mật khẩu</label>
                             <input asp-for="MatKhau" type="password" class="form-control" placeholder="Nhập mật khẩu" />
                             <span asp-validation-for="MatKhau" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Email" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Email</label>
                             <input asp-for="Email" type="email" class="form-control" placeholder="Nhập email" />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="SDT" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Số điện thoại</label>
                             <input asp-for="SDT" type="tel" class="form-control" placeholder="Nhập số điện thoại" />
                             <span asp-validation-for="SDT" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Role" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Vai trò</label>
                             <select asp-for="Role" class="form-select">
                                 <option value="">Chọn vai trò</option>
                                 <option value="HocVien">Học viên</option>
@@ -60,10 +60,11 @@
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="NgaySinh" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Ngày sinh</label>
                             <input asp-for="NgaySinh" type="date" class="form-control" />
                             <span asp-validation-for="NgaySinh" class="text-danger"></span>
                         </div>
+
 
                         <div class="d-flex justify-content-between">
                             <a asp-action="Index" class="btn btn-secondary">

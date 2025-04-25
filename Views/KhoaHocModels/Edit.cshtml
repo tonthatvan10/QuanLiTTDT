@@ -23,13 +23,13 @@
                         <input type="hidden" asp-for="MaKhoaHoc" />
 
                         <div class="mb-3">
-                            <label asp-for="TenKhoaHoc" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Tên khóa học</label>
                             <input asp-for="TenKhoaHoc" class="form-control" placeholder="Nhập tên khóa học" />
                             <span asp-validation-for="TenKhoaHoc" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="GiangVien" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Giảng viên</label>
                             <select id="GiangVienSelect" class="form-select" onchange="toggleCustomGiangVien()">
                                 <option value="">Chọn giảng viên</option>
                                 @foreach (var giangVien in giangVienList)
@@ -43,19 +43,19 @@
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="ThoiGianKhaiGiang" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Thời gian khai giảng</label>
                             <input asp-for="ThoiGianKhaiGiang" type="date" class="form-control" />
                             <span asp-validation-for="ThoiGianKhaiGiang" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="HocPhi" class="form-label fw-bold"></label>
-                            <input asp-for="HocPhi" type="number" step="1000" class="form-control" placeholder="Nhập học phí (VNĐ)" />
+                            <label class="form-label fw-bold">Học phí (VNĐ)</label>
+                            <input asp-for="HocPhi" type="number" step="1000" class="form-control" placeholder="Nhập học phí" />
                             <span asp-validation-for="HocPhi" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="SoLuongHocVienToiDa" class="form-label fw-bold"></label>
+                            <label class="form-label fw-bold">Số lượng học viên tối đa</label>
                             <input asp-for="SoLuongHocVienToiDa" type="number" min="1" class="form-control" placeholder="Nhập số lượng tối đa" />
                             <span asp-validation-for="SoLuongHocVienToiDa" class="text-danger"></span>
                         </div>

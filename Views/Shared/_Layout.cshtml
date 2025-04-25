@@ -78,7 +78,7 @@
                             else if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="Index">AdminDashBoard</a>
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="Index">AdminDashboard</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Khóa học</a>
@@ -123,10 +123,10 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
                                         <li>
-                                            <a class="dropdown-item" asp-controller="UserModels" asp-action="Index">Cập nhật Học viên</a>
+                                            <a class="dropdown-item" asp-controller="UserModels" asp-action="Index">Quản lí người dùng</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" asp-controller="KhoaHocModels" asp-action="Index">Cập nhật Khóa học</a>
+                                            <a class="dropdown-item" asp-controller="KhoaHocModels" asp-action="Index">Quản lí khóa học</a>
                                         </li>
                                         <li>
                                             <form method="post" asp-controller="Authentication" asp-action="Logout" class="dropdown-item p-0">

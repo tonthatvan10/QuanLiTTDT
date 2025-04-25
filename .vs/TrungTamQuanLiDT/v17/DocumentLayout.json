@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\views\\usermodels\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:views\\usermodels\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\controllers\\usermodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:controllers\\usermodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\controllers\\thongtinkhoahoccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:controllers\\thongtinkhoahoccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|c:\\users\\ton that van\\documents\\bkdn\\sophomore\\.net\\trungtamquanlidt\\views\\thongtinkhoahoc\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4167E5BD-175D-4661-BB04-95D8E50E6FF4}|TrungTamQuanLiDT.csproj|solutionrelative:views\\thongtinkhoahoc\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,28 +38,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\UserModels\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\UserModels\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\UserModels\\Index.cshtml*",
-              "RelativeToolTip": "Views\\UserModels\\Index.cshtml*",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAwBwAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-25T05:40:55.948Z",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAowFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T07:44:53.965Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserModelsController.cs",
-              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\UserModelsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserModelsController.cs",
-              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\UserModelsController.cs",
-              "RelativeToolTip": "Controllers\\UserModelsController.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAADUAAAAsAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAwwJUAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-25T07:44:43.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ThongTinKhoaHocController.cs",
+              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\ThongTinKhoaHocController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ThongTinKhoaHocController.cs",
+              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Controllers\\ThongTinKhoaHocController.cs",
+              "RelativeToolTip": "Controllers\\ThongTinKhoaHocController.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAwwGUAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T05:39:56.65Z",
+              "WhenOpened": "2025-04-25T07:43:53.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\ThongTinKhoaHoc\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTinKhoaHoc\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Ton That Van\\Documents\\BKDN\\Sophomore\\.NET\\TrungTamQuanLiDT\\Views\\ThongTinKhoaHoc\\Details.cshtml",
+              "RelativeToolTip": "Views\\ThongTinKhoaHoc\\Details.cshtml",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAwwFgAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-25T07:43:06.799Z",
               "EditorCaption": ""
             }
           ]

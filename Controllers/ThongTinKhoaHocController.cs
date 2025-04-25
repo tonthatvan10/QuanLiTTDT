@@ -18,6 +18,7 @@ namespace TrungTamQuanLiDT.Controllers
         {
             _context = context;
         }
+
         public IActionResult Details(int id)
         {
             if (!User.Identity.IsAuthenticated)
@@ -34,6 +35,11 @@ namespace TrungTamQuanLiDT.Controllers
             {
                 return NotFound();
             }
+
+            // Tính số lượng học viên đã đăng ký (trạng thái không phải Đã Hủy)
+            var soLuongDaDangKy = khoaHoc.DangKyHocs
+                .Count(d => d.TrangThai != TrangThaiDangKy.DaHuy);
+            ViewBag.SoLuongDaDangKy = soLuongDaDangKy;
 
             return View(khoaHoc);
         }

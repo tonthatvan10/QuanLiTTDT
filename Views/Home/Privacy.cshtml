@@ -84,6 +84,19 @@
     <!-- Phân trang -->
     <nav aria-label="Phân trang">
         <ul class="pagination justify-content-center mt-4">
+            <!-- Nút về trang đầu tiên -->
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Privacy", new { page = 1, searchString = ViewBag.SearchString, giangVien = ViewBag.GiangVienSelected, fromDate = ViewBag.FromDate, toDate = ViewBag.ToDate })" title="Trang đầu tiên">««</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled"><span class="page-link">««</span></li>
+            }
+
+            <!-- Nút trang trước -->
             @if (Model.HasPreviousPage)
             {
                 <li class="page-item">
@@ -95,6 +108,7 @@
                 <li class="page-item disabled"><span class="page-link">‹</span></li>
             }
 
+            <!-- Các trang -->
             @for (int i = 1; i <= Model.PageCount; i++)
             {
                 if (i == Model.PageNumber)
@@ -109,6 +123,7 @@
                 }
             }
 
+            <!-- Nút trang sau -->
             @if (Model.HasNextPage)
             {
                 <li class="page-item">
@@ -118,6 +133,18 @@
             else
             {
                 <li class="page-item disabled"><span class="page-link">›</span></li>
+            }
+
+            <!-- Nút đến trang cuối cùng -->
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Privacy", new { page = Model.PageCount, searchString = ViewBag.SearchString, giangVien = ViewBag.GiangVienSelected, fromDate = ViewBag.FromDate, toDate = ViewBag.ToDate })" title="Trang cuối cùng">»»</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled"><span class="page-link">»»</span></li>
             }
         </ul>
     </nav>

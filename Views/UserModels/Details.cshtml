@@ -16,47 +16,53 @@
         <div class="col-md-6 col-lg-5">
             <div class="card">
                 <div class="card-body">
-                    <dl class="row mb-4">
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.HoTen)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.HoTen)
-                        </dd>
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.TaiKhoan)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.TaiKhoan)
-                        </dd>
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.Email)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.Email)
-                        </dd>
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.SDT)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.SDT)
-                        </dd>
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.NgaySinh)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.NgaySinh, "{0:dd/MM/yyyy}")
-                        </dd>
-                    </dl>
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="MaHocVien" />
+                        <div class="row mb-3">
+                            <label for="HoTen" class="col-sm-4 col-form-label fw-bold">Họ Tên</label>
+                            <div class="col-sm-8">
+                                <input asp-for="HoTen" class="form-control" placeholder="Nhập họ tên" />
+                                <span asp-validation-for="HoTen" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="TaiKhoan" class="col-sm-4 col-form-label fw-bold">Tài Khoản</label>
+                            <div class="col-sm-8">
+                                <input asp-for="TaiKhoan" class="form-control" placeholder="Nhập tài khoản" />
+                                <span asp-validation-for="TaiKhoan" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="Email" class="col-sm-4 col-form-label fw-bold">Email</label>
+                            <div class="col-sm-8">
+                                <input asp-for="Email" class="form-control" placeholder="Nhập email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="SDT" class="col-sm-4 col-form-label fw-bold">Số Điện Thoại</label>
+                            <div class="col-sm-8">
+                                <input asp-for="SDT" class="form-control" placeholder="Nhập số điện thoại" />
+                                <span asp-validation-for="SDT" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="NgaySinh" class="col-sm-4 col-form-label fw-bold">Ngày Sinh</label>
+                            <div class="col-sm-8">
+                                <input asp-for="NgaySinh" class="form-control" type="date" />
+                                <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                            </div>
+                        </div>
 
-                    <div class="d-flex justify-content-between">
-                        <a asp-action="Index" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left me-2"></i>Quay lại
-                        </a>
-                        <a asp-action="Edit" asp-route-id="@Model?.MaHocVien" class="btn btn-warning">
-                            <i class="fas fa-edit me-2"></i>Sửa
-                        </a>
-                    </div>
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Quay lại
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Lưu
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

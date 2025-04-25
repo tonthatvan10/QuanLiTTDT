@@ -19,43 +19,25 @@
                     <h4 class="text-danger mb-4">Bạn có chắc muốn xóa khóa học này?</h4>
 
                     <dl class="row mb-4">
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.TenKhoaHoc)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.TenKhoaHoc)
-                        </dd>
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.GiangVien)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.GiangVien)
-                        </dd>
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.ThoiGianKhaiGiang)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.ThoiGianKhaiGiang, "{0:dd/MM/yyyy}")
-                        </dd>
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.ThoiGianKetThuc)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.ThoiGianKetThuc, "{0:dd/MM/yyyy}")
-                        </dd>
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.HocPhi)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.HocPhi)
-                        </dd>
-                        <dt class="col-sm-4 fw-bold">
-                            @Html.DisplayNameFor(model => model.SoLuongHocVienToiDa)
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.SoLuongHocVienToiDa)
-                        </dd>
+                        <dt class="col-sm-4 fw-bold">Tên khóa học</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.TenKhoaHoc)</dd>
+
+                        <dt class="col-sm-4 fw-bold">Giảng viên</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.GiangVien)</dd>
+
+                        <dt class="col-sm-4 fw-bold">Thời gian khai giảng</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.ThoiGianKhaiGiang, "{0:dd/MM/yyyy}")</dd>
+
+                        <dt class="col-sm-4 fw-bold">Thời gian kết thúc</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.ThoiGianKetThuc, "{0:dd/MM/yyyy}")</dd>
+
+                        <dt class="col-sm-4 fw-bold">Học phí</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.HocPhi)</dd>
+
+                        <dt class="col-sm-4 fw-bold">Số lượng học viên tối đa</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.SoLuongHocVienToiDa)</dd>
                     </dl>
+
 
                     <div class="d-flex justify-content-between">
                         <a asp-action="Index" class="btn btn-secondary">
