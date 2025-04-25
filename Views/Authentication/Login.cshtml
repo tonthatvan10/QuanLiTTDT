@@ -1,58 +1,65 @@
 ﻿@model TrungTamQuanLiDT.ViewModel.LoginViewModel
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860\
-*@
-
 @{
+    ViewData["Title"] = "Đăng nhập";
 }
 
-<div style="display: flex; justify-content: center;">
-    <h2>Đăng nhập</h2>
-</div>
+<!-- Thêm Google Fonts để tạo font chữ đẹp -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<div class="container mt-5">
+<div class="container mt-5" style="font-family: 'Poppins', sans-serif;">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2 class="text-center">@ViewData["Title"]</h2>
-            <hr />
+        <div class="col-md-6 col-lg-4">
+            <!-- Sử dụng card để bọc form -->
+            <div class="card shadow-lg rounded p-4" style="background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);">
+                <div class="card-body">
+                    <h2 class="text-center mb-4 fw-bold" style="color: #1a2a44;">Đăng nhập</h2>
+                    <hr class="mb-4" style="border-color: #2e4b6a;">
 
-            <!-- Form đăng nhập -->
-            <form asp-action="Login" asp-controller="Authentication" method="post">
-                <!-- Hiển thị lỗi tổng hợp (nếu có) -->
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <!-- Form đăng nhập -->
+                    <form asp-action="Login" asp-controller="Authentication" method="post">
+                        <!-- Hiển thị lỗi tổng hợp -->
+                        <div asp-validation-summary="ModelOnly" class="text-danger text-center mb-3"></div>
 
-                <!-- TaiKhoan -->
-                <div class="form-group" style="margin-bottom: 10px" >
-                    <label asp-for="TaiKhoan" class="control-label"></label>
-                    <input asp-for="TaiKhoan" class="form-control" placeholder="Nhập email" />
-                    <span asp-validation-for="TaiKhoan" class="text-danger"></span>
+                        <!-- Tài khoản -->
+                        <div class="mb-3">
+                            <label asp-for="TaiKhoan" class="form-label fw-semibold" style="color: #2e4b6a;"></label>
+                            <input asp-for="TaiKhoan" class="form-control form-control-lg" placeholder="Nhập email" style="border-color: #2e4b6a;" />
+                            <span asp-validation-for="TaiKhoan" class="text-danger"></span>
+                        </div>
+
+                        <!-- Mật khẩu -->
+                        <div class="mb-3">
+                            <label asp-for="MatKhau" class="form-label fw-semibold" style="color: #2e4b6a;"></label>
+                            <input asp-for="MatKhau" type="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu" style="border-color: #2e4b6a;" />
+                            <span asp-validation-for="MatKhau" class="text-danger"></span>
+                        </div>
+
+                        <!-- Nhớ mật khẩu -->
+                        <div class="mb-3 form-check">
+                            <input asp-for="RememberMe" class="form-check-input" style="border-color: #2e4b6a;" />
+                            <label asp-for="RememberMe" class="form-check-label" style="color: #2e4b6a;"></label>
+                        </div>
+
+                        <!-- Nút submit -->
+                        <div class="d-grid mb-4">
+                            <button type="submit" class="btn btn-primary btn-lg"
+                                    style="background: linear-gradient(90deg, #2e4b6a 0%, #1a2a44 100%); border: none; transition: all 0.3s ease;"
+                                    onmouseover="this.style.opacity='0.9';"
+                                    onmouseout="this.style.opacity='1';">
+                                Đăng nhập
+                            </button>
+                        </div>
+
+                        <!-- Liên kết phụ -->
+                        <div class="text-center">
+                            <a asp-controller="Home" asp-action="Index" class="text-decoration-none" style="color: #2e4b6a;">Quên mật khẩu?</a>
+                            <span class="text-muted">|</span>
+                            <a asp-action="Register" class="text-decoration-none" style="color: #2e4b6a;">Đăng ký tài khoản</a>
+                        </div>
+                    </form>
                 </div>
-
-                <!-- Mật khẩu -->
-                <div class="form-group" style="margin-bottom: 10px">
-                    <label asp-for="MatKhau" class="control-label"></label>
-                    <input asp-for="MatKhau" type="password" class="form-control" placeholder="Nhập mật khẩu" />
-                    <span asp-validation-for="MatKhau" class="text-danger"></span>
-                </div>
-
-                <!-- Nhớ mật khẩu -->
-                <div class="form-group form-check" style="margin-bottom: 10px">
-                    <input asp-for="RememberMe" class="form-check-input" />
-                    <label asp-for="RememberMe" class="form-check-label"></label>
-                </div>
-
-                <!-- Nút submit -->
-                <div class="form-group" style="margin-bottom: 10px">
-                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
-                </div>
-
-                <!-- Liên kết phụ (Quên mật khẩu/Đăng ký) -->
-                <div class="text-center" style="margin-bottom: 10px">
-                    <a asp-controller="Home" asp-action="Index">Quên mật khẩu?</a> |
-                    <a asp-action="Register">Đăng ký tài khoản</a>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

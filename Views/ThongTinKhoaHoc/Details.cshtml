@@ -4,52 +4,101 @@
     ViewData["Title"] = "Chi tiết khóa học";
 }
 
-<h2>Chi tiết khóa học</h2>
+<!-- Thêm Google Fonts để tạo font chữ đẹp -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-info">
-        @TempData["Message"]
+<style>
+    .slide-down {
+        animation: slideDown 0.5s ease-in-out;
+    }
+
+    @@keyframes slideDown {
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+</style>
+
+<div class="container mt-5" style="font-family: 'Poppins', sans-serif;">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <!-- Sử dụng card để bọc thông tin -->
+            <div class="card shadow-lg p-4" style="background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 1rem;">
+                <div class="card-body">
+                    <h2 class="text-center mb-4 fw-bold" style="color: #1a2a44;">Chi tiết khóa học</h2>
+                    <hr class="mb-4" style="border-color: #2e4b6a;">
+
+                    <!-- Hiển thị thông báo (nếu có) -->
+                    @if (TempData["Message"] != null)
+                    {
+                        <div id="success-message" class="alert alert-success text-center rounded py-3 slide-down" style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; font-weight: 500;">
+                            @TempData["Message"]
+                        </div>
+                    }
+
+                    <!-- Thông tin khóa học -->
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-semibold" style="color: #2e4b6a;">Tên khóa học</div>
+                        <div class="col-md-8 fw-bold fs-4" style="color: #1a2a44;">@Model.TenKhoaHoc</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-semibold" style="color: #2e4b6a;">Giảng viên</div>
+                        <div class="col-md-8">@Model.GiangVien</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-semibold" style="color: #2e4b6a;">Khai giảng</div>
+                        <div class="col-md-8">@Model.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-semibold" style="color: #2e4b6a;">Kết thúc</div>
+                        <div class="col-md-8">@Model.ThoiGianKetThuc.ToString("dd/MM/yyyy")</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-semibold" style="color: #2e4b6a;">Học phí</div>
+                        <div class="col-md-8">@Model.HocPhi.ToString("C", new System.Globalization.CultureInfo("vi-VN"))</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-semibold" style="color: #2e4b6a;">Số lượng tối đa</div>
+                        <div class="col-md-8">@Model.SoLuongHocVienToiDa</div>
+                    </div>
+
+                    <!-- Nút đăng ký hoặc thông báo -->
+                    @if (User.IsInRole("HocVien"))
+                    {
+                        <form asp-action="DangKy" asp-route-khoaHocId="@Model.MaKhoaHoc" method="post" class="d-grid mb-4">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-success btn-lg"
+                                    style="background: linear-gradient(90deg, #28a745 0%, #218838 100%); border: none; transition: all 0.3s ease;"
+                                    onmouseover="this.style.opacity='0.9';"
+                                    onmouseout="this.style.opacity='1';">
+                                Đăng ký khóa học
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning text-center rounded" style="background-color: #fff3cd; border-color: #ffeeba; color: #856404;">
+                            Chỉ học viên mới có thể đăng ký khóa học.
+                        </div>
+                    }
+
+                    <!-- Nút quay lại -->
+                    <div class="d-grid">
+                        <a asp-action="Privacy" asp-controller="Home" class="btn btn-secondary btn-lg"
+                           style="background: linear-gradient(90deg, #6c757d 0%, #5a6268 100%); border: none; transition: all 0.3s ease;"
+                           onmouseover="this.style.opacity='0.9';"
+                           onmouseout="this.style.opacity='1';">
+                            ← Quay lại danh sách
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-}
-
-<table class="table table-bordered">
-    <tr>
-        <th>Tên khóa học</th>
-        <td>@Model.TenKhoaHoc</td>
-    </tr>
-    <tr>
-        <th>Giảng viên</th>
-        <td>@Model.GiangVien</td>
-    </tr>
-    <tr>
-        <th>Khai giảng</th>
-        <td>@Model.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</td>
-    </tr>
-    <tr>
-        <th>Kết thúc</th>
-        <td>@Model.ThoiGianKetThuc.ToString("dd/MM/yyyy")</td>
-    </tr>
-    <tr>
-        <th>Học phí</th>
-        <td>@Model.HocPhi.ToString("C", new System.Globalization.CultureInfo("vi-VN"))</td>
-    </tr>
-    <tr>
-        <th>Số lượng tối đa</th>
-        <td>@Model.SoLuongHocVienToiDa</td>
-    </tr>
-</table>
-
-@if (User.IsInRole("HocVien"))
-{
-    <form asp-action="DangKy" asp-route-khoaHocId="@Model.MaKhoaHoc" method="post">
-        @Html.AntiForgeryToken()
-        <button type="submit" class="btn btn-success">Đăng ký khóa học</button>
-    </form>
-}
-else
-{
-    <div class="alert alert-warning">Chỉ học viên mới có thể đăng ký khóa học.</div>
-}
-
-<a asp-action="Privacy" asp-controller="Home" class="btn btn-secondary mt-3">← Quay lại danh sách</a>
+</div>

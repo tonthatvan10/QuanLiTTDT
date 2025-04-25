@@ -1,53 +1,156 @@
 ﻿@model TrungTamQuanLiDT.Models.KhoaHocModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Tạo mới khóa học";
+    // Giả định danh sách giảng viên từ ViewBag
+    var giangVienList = ViewBag.GiangVienList as List<string> ?? new List<string> { "Nguyễn Văn A", "Trần Thị B", "Lê Văn C" };
 }
 
-<h1>Create</h1>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-3">Tạo mới khóa học</h1>
+            <hr />
+        </div>
+    </div>
 
-<h4>KhoaHocModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TenKhoaHoc" class="control-label"></label>
-                <input asp-for="TenKhoaHoc" class="form-control" />
-                <span asp-validation-for="TenKhoaHoc" class="text-danger"></span>
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="Create" id="createKhoaHocForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="TenKhoaHoc" class="form-label fw-bold"></label>
+                            <input asp-for="TenKhoaHoc" class="form-control" placeholder="Nhập tên khóa học" />
+                            <span asp-validation-for="TenKhoaHoc" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="GiangVien" class="form-label fw-bold"></label>
+                            <select id="GiangVienSelect" class="form-select" onchange="toggleCustomGiangVien()">
+                                <option value="">Chọn giảng viên</option>
+                                @foreach (var giangVien in giangVienList)
+                                {
+                                    <option value="@giangVien">@giangVien</option>
+                                }
+                                <option value="custom">Khác (nhập mới)</option>
+                            </select>
+                            <input asp-for="GiangVien" id="GiangVien" class="form-control mt-2" placeholder="Nhập tên giảng viên mới" style="display: none;" />
+                            <span asp-validation-for="GiangVien" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ThoiGianKhaiGiang" class="form-label fw-bold"></label>
+                            <input asp-for="ThoiGianKhaiGiang" type="date" class="form-control" />
+                            <span asp-validation-for="ThoiGianKhaiGiang" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="HocPhi" class="form-label fw-bold"></label>
+                            <input asp-for="HocPhi" type="number" step="1000" class="form-control" placeholder="Nhập học phí (VNĐ)" />
+                            <span asp-validation-for="HocPhi" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SoLuongHocVienToiDa" class="form-label fw-bold"></label>
+                            <input asp-for="SoLuongHocVienToiDa" type="number" min="1" class="form-control" placeholder="Nhập số lượng tối đa" />
+                            <span asp-validation-for="SoLuongHocVienToiDa" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Quay lại
+                            </a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmCreateModal">
+                                <i class="fas fa-save me-2"></i>Tạo mới
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="GiangVien" class="control-label"></label>
-                <input asp-for="GiangVien" class="form-control" />
-                <span asp-validation-for="GiangVien" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThoiGianKhaiGiang" class="control-label"></label>
-                <input asp-for="ThoiGianKhaiGiang" class="form-control" />
-                <span asp-validation-for="ThoiGianKhaiGiang" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HocPhi" class="control-label"></label>
-                <input asp-for="HocPhi" class="form-control" />
-                <span asp-validation-for="HocPhi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SoLuongHocVienToiDa" class="control-label"></label>
-                <input asp-for="SoLuongHocVienToiDa" class="form-control" />
-                <span asp-validation-for="SoLuongHocVienToiDa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<!-- Modal xác nhận tạo -->
+<div class="modal fade" id="confirmCreateModal" tabindex="-1" aria-labelledby="confirmCreateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmCreateModalLabel">Xác nhận tạo khóa học</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc muốn tạo khóa học với thông tin sau?</p>
+                <ul>
+                    <li><strong>Tên khóa học:</strong> <span id="confirmTenKhoaHoc"></span></li>
+                    <li><strong>Giảng viên:</strong> <span id="confirmGiangVien"></span></li>
+                    <li><strong>Ngày khai giảng:</strong> <span id="confirmThoiGianKhaiGiang"></span></li>
+                    <li><strong>Học phí:</strong> <span id="confirmHocPhi"></span> VNĐ</li>
+                    <li><strong>Số lượng tối đa:</strong> <span id="confirmSoLuongHocVienToiDa"></span></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Hủy
+                </button>
+                <button type="button" class="btn btn-primary" onclick="document.getElementById('createKhoaHocForm').submit();">
+                    <i class="fas fa-save me-2"></i>Xác nhận
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Hiển thị input khi chọn "Khác"
+        function toggleCustomGiangVien() {
+            var select = document.getElementById('GiangVienSelect');
+            var input = document.getElementById('GiangVien');
+            if (select.value === 'custom') {
+                input.style.display = 'block';
+                input.focus();
+            } else {
+                input.style.display = 'none';
+                input.value = select.value; // Gán giá trị từ dropdown vào input ẩn
+            }
+        }
+
+        // Cập nhật giá trị giảng viên trước khi gửi form
+        document.getElementById('createKhoaHocForm').addEventListener('submit', function () {
+            var select = document.getElementById('GiangVienSelect');
+            var input = document.getElementById('GiangVien');
+            if (select.value !== 'custom') {
+                input.value = select.value;
+            }
+        });
+
+        // Hiển thị dữ liệu trong modal
+        document.getElementById('confirmCreateModal').addEventListener('show.bs.modal', function () {
+            document.getElementById('confirmTenKhoaHoc').textContent = document.getElementById('TenKhoaHoc').value;
+            var giangVienValue = document.getElementById('GiangVienSelect').value === 'custom'
+                ? document.getElementById('GiangVien').value
+                : document.getElementById('GiangVienSelect').value;
+            document.getElementById('confirmGiangVien').textContent = giangVienValue || 'Chưa chọn';
+            document.getElementById('confirmThoiGianKhaiGiang').textContent = document.getElementById('ThoiGianKhaiGiang').value;
+            document.getElementById('confirmHocPhi').textContent = document.getElementById('HocPhi').value;
+            document.getElementById('confirmSoLuongHocVienToiDa').textContent = document.getElementById('SoLuongHocVienToiDa').value;
+        });
+    </script>
 }

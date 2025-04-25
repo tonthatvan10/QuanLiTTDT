@@ -6,69 +6,123 @@
     ViewData["Title"] = "Danh sách khóa học";
 }
 
-<h1>Danh sách khóa học</h1>
-<h2>Chào mừng @User.Identity.Name!</h2>
-
-@if (!string.IsNullOrEmpty(ViewBag.Message))
-{
-    <div class="alert alert-info">@ViewBag.Message</div>
-}
-
-<!-- Form lọc -->
-<form asp-action="Privacy" method="get" class="mb-4">
-    <div class="row">
-        <div class="col-md-3">
-            <input type="text" name="searchString" value="@ViewBag.SearchString" class="form-control" placeholder="Tên khóa học" />
-        </div>
-        <div class="col-md-3">
-            <select name="giangVien" class="form-control">
-                <option value="">Tất cả giảng viên</option>
-                @foreach (var gv in ViewBag.GiangViens)
-                {
-                    <option value="@gv" selected="@(gv == ViewBag.GiangVienSelected ? "selected" : null)">@gv</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-2">
-            <input type="date" name="fromDate" value="@ViewBag.FromDate" class="form-control" />
-        </div>
-        <div class="col-md-2">
-            <input type="date" name="toDate" value="@ViewBag.ToDate" class="form-control" />
-        </div>
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-primary">Lọc</button>
-        </div>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold">📚 Danh sách khóa học</h2>
+        <span class="text-muted">Chào mừng <strong>@User.Identity.Name</strong>!</span>
     </div>
-</form>
 
-<!-- Danh sách khóa học -->
-<table class="table">
-    <thead>
-        <tr>
-            <th>Tên khóa học</th>
-            <th>Giảng viên</th>
-            <th>Khai giảng</th>
-            <th>Kết thúc</th>
-            <th>Học phí</th>
-            <th>Số lượng tối đa</th>
-            <th>Chi tiết</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var khoaHoc in Model)
-        {
-            <tr>
-                <td>@khoaHoc.TenKhoaHoc</td>
-                <td>@khoaHoc.GiangVien</td>
-                <td>@khoaHoc.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</td>
-                <td>@khoaHoc.ThoiGianKetThuc.ToString("dd/MM/yyyy")</td>
-                <td>@khoaHoc.HocPhi.ToString("C", new System.Globalization.CultureInfo("vi-VN"))</td>
-                <td>@khoaHoc.SoLuongHocVienToiDa</td>
-                <td><a asp-controller="ThongTinKhoaHoc" asp-action="Details" asp-route-id="@khoaHoc.MaKhoaHoc">Xem chi tiết</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="alert alert-info">@ViewBag.Message</div>
+    }
 
-<!-- Phân trang -->
-@Html.PagedListPager(Model, page => Url.Action("Privacy", new { page, searchString = ViewBag.SearchString, giangVien = ViewBag.GiangVienSelected, fromDate = ViewBag.FromDate,  toDate = ViewBag.ToDate }))
+    <!-- Form lọc -->
+    <form asp-action="Privacy" method="get" class="mb-4 p-3 bg-light rounded shadow-sm">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <input type="text" name="searchString" value="@ViewBag.SearchString" class="form-control" placeholder="🔍 Tên khóa học" />
+            </div>
+            <div class="col-md-3">
+                <select name="giangVien" class="form-select">
+                    <option value="">👨‍🏫 Tất cả giảng viên</option>
+                    @foreach (var gv in ViewBag.GiangViens)
+                    {
+                        <option value="@gv" selected="@(gv == ViewBag.GiangVienSelected ? "selected" : null)">@gv</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <input type="date" name="fromDate" value="@ViewBag.FromDate" class="form-control" placeholder="Từ ngày" />
+            </div>
+            <div class="col-md-2">
+                <input type="date" name="toDate" value="@ViewBag.ToDate" class="form-control" placeholder="Đến ngày" />
+            </div>
+            <div class="col-md-2 d-grid">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-funnel-fill"></i> Lọc
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Danh sách khóa học -->
+    <div class="table-responsive shadow-sm">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th scope="col">Tên khóa học</th>
+                    <th scope="col">Giảng viên</th>
+                    <th scope="col">Khai giảng</th>
+                    <th scope="col">Kết thúc</th>
+                    <th scope="col">Học phí</th>
+                    <th scope="col">Số lượng tối đa</th>
+                    <th scope="col">Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var khoaHoc in Model)
+                {
+                    <tr>
+                        <td>@khoaHoc.TenKhoaHoc</td>
+                        <td>@khoaHoc.GiangVien</td>
+                        <td>@khoaHoc.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</td>
+                        <td>@khoaHoc.ThoiGianKetThuc.ToString("dd/MM/yyyy")</td>
+                        <td>@khoaHoc.HocPhi.ToString("C", new System.Globalization.CultureInfo("vi-VN"))</td>
+                        <td>@khoaHoc.SoLuongHocVienToiDa</td>
+                        <td class="text-center">
+                            <a class="btn btn-sm btn-outline-info" asp-controller="ThongTinKhoaHoc" asp-action="Details" asp-route-id="@khoaHoc.MaKhoaHoc">
+                                Xem chi tiết
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Phân trang -->
+    <nav aria-label="Phân trang">
+        <ul class="pagination justify-content-center mt-4">
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Privacy", new { page = Model.PageNumber - 1, searchString = ViewBag.SearchString, giangVien = ViewBag.GiangVienSelected, fromDate = ViewBag.FromDate, toDate = ViewBag.ToDate })">‹</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled"><span class="page-link">‹</span></li>
+            }
+
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                if (i == Model.PageNumber)
+                {
+                    <li class="page-item active"><span class="page-link">@i</span></li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Privacy", new { page = i, searchString = ViewBag.SearchString, giangVien = ViewBag.GiangVienSelected, fromDate = ViewBag.FromDate, toDate = ViewBag.ToDate })">@i</a>
+                    </li>
+                }
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Privacy", new { page = Model.PageNumber + 1, searchString = ViewBag.SearchString, giangVien = ViewBag.GiangVienSelected, fromDate = ViewBag.FromDate, toDate = ViewBag.ToDate })">›</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled"><span class="page-link">›</span></li>
+            }
+        </ul>
+    </nav>
+</div>
+
+
+
+

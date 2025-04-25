@@ -72,8 +72,20 @@ namespace TrungTamQuanLiDT.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaHocVien,HoTen,TaiKhoan,MatKhau,Email,SDT,NgaySinh")] UserModel userModel)
+        public async Task<IActionResult> Create([Bind("HoTen,TaiKhoan,MatKhau,Email,SDT,NgaySinh,Role")] UserModel userModel)
         {
+            userModel.NgaySinh = userModel.NgaySinh == default ? DateTime.Now : userModel.NgaySinh;
+
+            if (await _context.HocViens.AnyAsync(u => u.TaiKhoan == userModel.TaiKhoan))
+            {
+                ModelState.AddModelError("TaiKhoan", "Tài khoản này đã được sử dụng.");
+            }
+
+            if (await _context.HocViens.AnyAsync(u => u.MatKhau == userModel.MatKhau))
+            {
+                ModelState.AddModelError("MatKhau", "Mật khẩu này đã tồn tại. Vui lòng chọn mật khẩu khác.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(userModel);

@@ -7,12 +7,48 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TrungTamQuanLiDT.styles.css" asp-append-version="true" />
+    <style>
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+            .nav-link:hover {
+                color: #0d6efd !important;
+                text-decoration: underline;
+            }
+
+        .nav-item {
+            margin-right: 1rem;
+        }
+
+        .dropdown-item {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .dropdown-menu {
+            min-width: 200px;
+        }
+        /* Thêm hover để mở dropdown */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            margin-top: 0; /* Loại bỏ khoảng cách khi hover */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-0">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Quản lý trung tâm đào tạo</a>
+                @if (!User.IsInRole("Admin"))
+                {
+                    <a class="navbar-brand fw-bold text-primary fs-3" asp-area="" asp-controller="Home" asp-action="Index">VanGrow Edu</a>
+                }
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,36 +57,40 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <!-- Menu trái -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Thông tin khóa học</a>
-                        </li>
+                        @if (!User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Khóa học</a>
+                            </li>
+                        }
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             if (User.IsInRole("HocVien"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="KhoaHocDaDangKy" asp-action="Index">Các khóa học đã đăng ký</a>
+                                    <a class="nav-link text-white" asp-area="" asp-controller="KhoaHocDaDangKy" asp-action="Index">Khóa học của tôi</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="KhoaHocHetHan" asp-action="Index">Các khóa học đã kết thúc</a>
+                                    <a class="nav-link text-white" asp-area="" asp-controller="KhoaHocHetHan" asp-action="Index">Đã kết thúc</a>
                                 </li>
-
                             }
                             else if (User.IsInRole("Admin"))
                             {
-                                <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Thống kê quản trị</a>
-                                </li>
-
-                            }
-                            else{
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="Index">AdminDashBoard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Khóa học</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
                                 </li>
                             }
                         }
-                         
-
                     </ul>
 
                     <!-- Menu phải -->
@@ -60,13 +100,12 @@
                             if (User.IsInRole("HocVien"))
                             {
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="~/images/default-avatar.png" alt="avatar" class="rounded-circle" width="30" height="30" />
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span class="ms-2">Tài khoản của tôi</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                         <li>
-                                            <a class="dropdown-item" asp-controller="HocVienFunc" asp-action="Index">Chỉnh sửa thông tin</a>
+                                            <a class="dropdown-item" asp-controller="HocVienFunc" asp-action="Index">Cập nhật thông tin tài khoản</a>
                                         </li>
                                         <li>
                                             <form method="post" asp-controller="Authentication" asp-action="Logout" class="dropdown-item p-0">
@@ -79,8 +118,7 @@
                             else if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="~/images/admin-avatar.png" alt="admin-avatar" class="rounded-circle" width="30" height="30" />
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span class="ms-2">Quản trị viên</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
@@ -102,10 +140,10 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Login">Đăng nhập</a>
+                                <a class="nav-link text-white" asp-controller="Authentication" asp-action="Login">Đăng nhập</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Register">Đăng ký</a>
+                                <a class="nav-link text-white" asp-controller="Authentication" asp-action="Register">Đăng ký</a>
                             </li>
                         }
                     </ul>
@@ -113,15 +151,14 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - TrungTamQuanLiDT - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            © 2025 - VanGrow Edu - <a asp-area="" asp-controller="Home" asp-action="Privacy">Khóa học</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

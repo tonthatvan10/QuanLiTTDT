@@ -1,34 +1,108 @@
-﻿@model IEnumerable<TrungTamQuanLiDT.Models.KhoaHocModel>
+﻿@model List<TrungTamQuanLiDT.Models.DangKyKhoaHocModel>
 
-<h2>Khóa học đã đăng ký</h2>
 
-@if (!Model.Any())
-{
-    <p>Bạn chưa đăng ký khóa học nào.</p>
+@{
+    ViewData["Title"] = "Khóa học đã đăng ký";
 }
-else
-{
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Tên khóa học</th>
-                <th>Giảng viên</th>
-                <th>Ngày khai giảng</th>
-                <th>Ngày kết thúc</th>
-                <th>Học phí</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var kh in Model)
+
+<!-- Thêm Google Fonts để tạo font chữ đẹp -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Thêm CSS cho hiệu ứng trượt xuống và hover -->
+<style>
+    .slide-down {
+        animation: slideDown 0.5s ease-in-out;
+    }
+
+    @@keyframes slideDown {
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .course-card {
+        transition: transform 0.3s ease;
+    }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+</style>
+
+<div class="container mt-5" style="font-family: 'Poppins', sans-serif;">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2 class="text-center mb-4 fw-bold" style="color: #1a2a44;">Khóa học đã đăng ký</h2>
+
+            <!-- Hiển thị thông báo (nếu có) -->
+            @if (TempData["Message"] != null)
             {
-                <tr>
-                    <td>@kh.TenKhoaHoc</td>
-                    <td>@kh.GiangVien</td>
-                    <td>@kh.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</td>
-                    <td>@kh.ThoiGianKetThuc.ToString("dd/MM/yyyy")</td>
-                    <td>@kh.HocPhi.ToString("C0")</td>
-                </tr>
+                <div id="success-message" class="alert alert-success text-center rounded py-3 slide-down mb-4" style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; font-weight: 500;">
+                    @TempData["Message"]
+                </div>
             }
-        </tbody>
-    </table>
+
+            <!-- Danh sách khóa học -->
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center rounded" style="background-color: #e6f4f1; border-color: #2e4b6a; color: #1a2a44;">
+                    Bạn chưa đăng ký khóa học nào.
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    @foreach (var dk in Model)
+                    {
+                        var kh = dk.KhoaHoc;
+                        <div class="col-md-6 mb-4">
+                            <div class="card course-card shadow-sm p-3" style="background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 1rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold fs-4 mb-3" style="color: #1a2a44;">@kh?.TenKhoaHoc</h5>
+                                    <p class="mb-2"><span class="fw-semibold" style="color: #2e4b6a;">Giảng viên:</span> @kh?.GiangVien</p>
+                                    <p class="mb-2"><span class="fw-semibold" style="color: #2e4b6a;">Khai giảng:</span> @kh?.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</p>
+                                    <p class="mb-2"><span class="fw-semibold" style="color: #2e4b6a;">Kết thúc:</span> @kh?.ThoiGianKetThuc.ToString("dd/MM/yyyy")</p>
+                                    <p class="mb-3"><span class="fw-semibold" style="color: #2e4b6a;">Học phí:</span> @kh?.HocPhi.ToString("C0", new System.Globalization.CultureInfo("vi-VN"))</p>
+
+                                    <!-- Nút hủy đăng ký -->
+                                    <form asp-action="HuyDangKy" asp-controller="KhoaHocDaDangKy" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="maDangKy" value="@dk.MaDangKy" />
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                style="background: linear-gradient(90deg, #dc3545 0%, #c82333 100%); border: none; transition: all 0.3s ease;"
+                                                onmouseover="this.style.opacity='0.9';"
+                                                onmouseout="this.style.opacity='1';"
+                                                onclick="return confirm('Bạn có chắc muốn hủy đăng ký khóa học này không?');">
+                                            Hủy đăng ký
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Thêm JavaScript để tự động ẩn thông báo sau 3 giây -->
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const message = document.getElementById("success-message");
+            if (message) {
+                setTimeout(function () {
+                    message.style.display = "none";
+                }, 3000); // Ẩn sau 3 giây (3000ms)
+            }
+        });
+    </script>
 }

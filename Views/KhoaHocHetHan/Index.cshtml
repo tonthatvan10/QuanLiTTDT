@@ -1,34 +1,71 @@
 ﻿@model IEnumerable<TrungTamQuanLiDT.Models.KhoaHocModel>
 
-<h2>Các khóa học đã kết thúc bạn từng tham gia</h2>
+@{
+    ViewData["Title"] = "Khóa học đã kết thúc";
+}
 
-@if (!Model.Any())
-{
-    <p>Bạn chưa có khóa học nào đã hết hạn.</p>
-}
-else
-{
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Tên khóa học</th>
-                <th>Giảng viên</th>
-                <th>Ngày khai giảng</th>
-                <th>Ngày kết thúc</th>
-                <th>Học phí</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var kh in Model)
+<!-- Thêm Google Fonts để tạo font chữ đẹp -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Thêm CSS cho hiệu ứng trượt xuống và hover -->
+<style>
+    .slide-down {
+        animation: slideDown 0.5s ease-in-out;
+    }
+
+    @@keyframes slideDown {
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .course-card {
+        transition: transform 0.3s ease;
+    }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+</style>
+
+<div class="container mt-5" style="font-family: 'Poppins', sans-serif;">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2 class="text-center mb-4 fw-bold" style="color: #1a2a44;">Khóa học đã kết thúc</h2>
+
+            <!-- Danh sách khóa học -->
+            @if (!Model.Any())
             {
-                <tr>
-                    <td>@kh.TenKhoaHoc</td>
-                    <td>@kh.GiangVien</td>
-                    <td>@kh.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</td>
-                    <td>@kh.ThoiGianKetThuc.ToString("dd/MM/yyyy")</td>
-                    <td>@kh.HocPhi.ToString("C0")</td>
-                </tr>
+                <div class="alert alert-info text-center rounded" style="background-color: #e6f4f1; border-color: #2e4b6a; color: #1a2a44;">
+                    Bạn chưa tham gia khóa học nào.
+                </div>
             }
-        </tbody>
-    </table>
-}
+            else
+            {
+                <div class="row">
+                    @foreach (var kh in Model)
+                    {
+                        <div class="col-md-6 mb-4">
+                            <div class="card course-card shadow-sm p-3" style="background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 1rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold fs-4 mb-3" style="color: #1a2a44;">@kh.TenKhoaHoc</h5>
+                                    <p class="mb-2"><span class="fw-semibold" style="color: #2e4b6a;">Giảng viên:</span> @kh.GiangVien</p>
+                                    <p class="mb-2"><span class="fw-semibold" style="color: #2e4b6a;">Khai giảng:</span> @kh.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</p>
+                                    <p class="mb-2"><span class="fw-semibold" style="color: #2e4b6a;">Kết thúc:</span> @kh.ThoiGianKetThuc.ToString("dd/MM/yyyy")</p>
+                                    <p class="mb-3"><span class="fw-semibold" style="color: #2e4b6a;">Học phí:</span> @kh.HocPhi.ToString("C0", new System.Globalization.CultureInfo("vi-VN"))</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

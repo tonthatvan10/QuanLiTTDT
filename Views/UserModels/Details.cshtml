@@ -1,54 +1,68 @@
 ﻿@model TrungTamQuanLiDT.Models.UserModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết học viên";
 }
 
-<h1>Details</h1>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-3">Chi tiết học viên</h1>
+            <hr />
+        </div>
+    </div>
 
-<div>
-    <h4>UserModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HoTen)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HoTen)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaiKhoan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaiKhoan)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MatKhau)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MatKhau)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
-    </dl>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4 fw-bold">
+                            @Html.DisplayNameFor(model => model.HoTen)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.HoTen)
+                        </dd>
+                        <dt class="col-sm-4 fw-bold">
+                            @Html.DisplayNameFor(model => model.TaiKhoan)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.TaiKhoan)
+                        </dd>
+                        <dt class="col-sm-4 fw-bold">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+                        <dt class="col-sm-4 fw-bold">
+                            @Html.DisplayNameFor(model => model.SDT)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.SDT)
+                        </dd>
+                        <dt class="col-sm-4 fw-bold">
+                            @Html.DisplayNameFor(model => model.NgaySinh)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.NgaySinh, "{0:dd/MM/yyyy}")
+                        </dd>
+                    </dl>
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Quay lại
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@Model?.MaHocVien" class="btn btn-warning">
+                            <i class="fas fa-edit me-2"></i>Sửa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.MaHocVien">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+}

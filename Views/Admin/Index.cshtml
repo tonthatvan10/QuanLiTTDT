@@ -4,26 +4,67 @@
     ViewData["Title"] = "Thống kê quản trị";
 }
 
-<h2 class="mb-4">Bảng điều khiển quản trị</h2>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<div class="row mb-4">
-    <div class="col-md-6">
-        <div class="card text-white bg-primary shadow-sm p-4 rounded">
-            <h5>Tổng số học viên đang đăng ký</h5>
-            <h2>@Model.TongSoHocVienDangKy</h2>
+<!-- CSS tổng thể -->
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f6f9;
+    }
+
+    .stat-card, .chart-card {
+        transition: transform 0.3s ease;
+        border: none;
+        border-radius: 1rem;
+    }
+
+        .stat-card:hover, .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+    .chart-container {
+        height: 600px;
+        position: relative;
+    }
+
+    h2, h5 {
+        color: #1a2a44;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h2 class="text-center mb-4 fw-bold">Bảng điều khiển quản trị</h2>
+
+            <!-- Thống kê -->
+            <div class="row mb-4 g-4">
+                <div class="col-md-6">
+                    <div class="card stat-card shadow-sm p-4" style="background: linear-gradient(90deg, #007bff 0%, #0056b3 100%); color: white;">
+                        <h5 class="fw-semibold">Tổng số học viên đang đăng ký</h5>
+                        <h2 class="fw-bold">@Model.TongSoHocVienDangKy</h2>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card stat-card shadow-sm p-4" style="background: linear-gradient(90deg, #28a745 0%, #218838 100%); color: white;">
+                        <h5 class="fw-semibold">Tổng số khóa học hiện có</h5>
+                        <h2 class="fw-bold">@Model.TongSoKhoaHoc</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biểu đồ -->
+            <div class="card chart-card shadow-sm p-4 mb-5" style="background: linear-gradient(180deg, #ffffff 0%, #f0f2f5 100%);">
+                <h5 class="fw-semibold mb-3">Số lượng học viên đăng ký theo từng khóa học</h5>
+                <div class="chart-container">
+                    <canvas id="chartHocVien"></canvas>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="card text-white bg-success shadow-sm p-4 rounded">
-            <h5>Tổng số khóa học hiện có</h5>
-            <h2>@Model.TongSoKhoaHoc</h2>
-        </div>
-    </div>
-</div>
-
-<div class="card p-4 mb-5 shadow-sm">
-    <h5>Biểu đồ số lượng học viên đăng ký theo từng khóa học</h5>
-    <canvas id="chartHocVien" width="400" height="200"></canvas>
 </div>
 
 @section Scripts {
@@ -39,20 +80,60 @@
                     data: @Html.Raw(Json.Serialize(Model.ThongKeDangKyTheoKhoaHoc.Values)),
                     backgroundColor: 'rgba(54, 162, 235, 0.6)',
                     borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    hoverBackgroundColor: 'rgba(54, 162, 235, 0.8)',
+                    hoverBorderColor: 'rgba(54, 162, 235, 1)'
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
-                    legend: { display: false },
+                    legend: {
+                        display: false
+                    },
                     title: {
                         display: true,
-                        text: 'Số lượng học viên đăng ký theo khóa học'
+                        text: 'Số lượng học viên đăng ký theo khóa học',
+                        font: {
+                            family: 'Poppins',
+                            size: 16,
+                            weight: '600'
+                        },
+                        color: '#1a2a44'
+                    },
+                    tooltip: {
+                        backgroundColor: '#2e4b6a',
+                        titleFont: { family: 'Poppins', size: 14 },
+                        bodyFont: { family: 'Poppins', size: 12 },
+                        padding: 10
                     }
                 },
                 scales: {
-                    y: { beginAtZero: true }
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { family: 'Poppins', size: 12 },
+                            color: '#1a2a44',
+                            maxRotation: 0,
+                            minRotation: 0,
+                            align: 'center',
+                            callback: function (value) {
+                                const label = this.getLabelForValue(value);
+                                return label.length > 15 ? label.split(" ") : label;
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: { family: 'Poppins', size: 12 },
+                            color: '#1a2a44'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    }
                 }
             }
         });

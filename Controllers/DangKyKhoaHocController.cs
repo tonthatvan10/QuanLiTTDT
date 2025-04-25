@@ -22,13 +22,29 @@ namespace TrungTamQuanLiDT.Controllers
         // GET: /DangKyKhoaHoc/Index
         public async Task<IActionResult> Index()
         {
-            var danhSach = await _context.DangKyHocs
-                .Include(d => d.HocVien)
-                .Include(d => d.KhoaHoc)
+            var username = User.Identity?.Name;
+            if (string.IsNullOrEmpty(username))
+            {
+                TempData["Message"] = "Bạn cần đăng nhập để xem danh sách đăng ký.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            var hocVien = await _context.HocViens.FirstOrDefaultAsync(h => h.TaiKhoan == username);
+            if (hocVien == null)
+            {
+                TempData["Message"] = "Không tìm thấy thông tin học viên.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            var khoaHocDaDangKy = await _context.DangKyHocs
+                .Include(dk => dk.KhoaHoc)
+                .Where(dk => dk.MaHocVien == hocVien.MaHocVien &&
+                             dk.TrangThai != DangKyKhoaHocModel.TrangThaiDangKy.DaHuy)
                 .ToListAsync();
 
-            return View(danhSach);
+            return View(khoaHocDaDangKy);
         }
+
 
         // GET: DangKyKhoaHoc/Create
         public IActionResult Create()
@@ -80,7 +96,7 @@ namespace TrungTamQuanLiDT.Controllers
             _context.DangKyHocs.Add(model);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "KhoaHocDaDangKy");
         }
 
     }

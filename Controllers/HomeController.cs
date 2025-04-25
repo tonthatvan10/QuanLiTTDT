@@ -1,10 +1,9 @@
 ﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrungTamQuanLiDT.Models;
 using TrungTamQuanLiDT.Data;
-using X.PagedList; 
+using X.PagedList;
 using X.PagedList.Extensions;
 
 namespace TrungTamQuanLiDT.Controllers
@@ -27,54 +26,56 @@ namespace TrungTamQuanLiDT.Controllers
 
         public IActionResult Privacy(string searchString, string giangVien, DateTime? fromDate, DateTime? toDate, int page = 1)
         {
-            int pageSize = 3;
-            var query = _context.KhoaHocs.AsQueryable();
+            const int pageSize = 5;
 
-            // Lọc theo tên khóa học
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                query = query.Where(k => k.TenKhoaHoc.Contains(searchString));
-            }
+            // Lọc danh sách khóa học
+            var khoaHocs = FilterCourses(searchString, giangVien, fromDate, toDate)
+                .OrderBy(k => k.ThoiGianKhaiGiang)
+                .ToPagedList(page, pageSize);
 
-            // Lọc theo giảng viên
-            if (!string.IsNullOrEmpty(giangVien))
-            {
-                query = query.Where(k => k.GiangVien == giangVien);
-            }
+            // Truyền danh sách giảng viên duy nhất cho dropdown
+            ViewBag.GiangViens = GetDistinctGiangViens();
 
-            // Lọc theo khoảng thời gian khai giảng
-            if (fromDate.HasValue)
-            {
-                query = query.Where(k => k.ThoiGianKhaiGiang >= fromDate.Value);
-            }
-            if (toDate.HasValue)
-            {
-                query = query.Where(k => k.ThoiGianKhaiGiang <= toDate.Value);
-            }
-
-            // Truyền danh sách giảng viên duy nhất về View
-            ViewBag.GiangViens = _context.KhoaHocs
-                .Where(k => !string.IsNullOrEmpty(k.GiangVien))
-                .Select(k => k.GiangVien)
-                .Distinct()
-                .ToList();
-
-            // Lưu trạng thái bộ lọc
+            // Lưu trạng thái bộ lọc cho giao diện
             ViewBag.SearchString = searchString;
             ViewBag.GiangVienSelected = giangVien;
             ViewBag.FromDate = fromDate?.ToString("yyyy-MM-dd");
             ViewBag.ToDate = toDate?.ToString("yyyy-MM-dd");
 
-            // Lấy danh sách khóa học phân trang
-            var pagedList = query.OrderBy(k => k.ThoiGianKhaiGiang).ToPagedList(page, pageSize);
-
-            // Kiểm tra danh sách rỗng
-            if (!pagedList.Any())
+            if (!khoaHocs.Any())
             {
                 ViewBag.Message = "Không tìm thấy khóa học nào phù hợp.";
             }
 
-            return View(pagedList);
+            return View(khoaHocs);
+        }
+
+        private IQueryable<KhoaHocModel> FilterCourses(string searchString, string giangVien, DateTime? fromDate, DateTime? toDate)
+        {
+            var query = _context.KhoaHocs.AsNoTracking().AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchString))
+                query = query.Where(k => k.TenKhoaHoc.Contains(searchString));
+
+            if (!string.IsNullOrWhiteSpace(giangVien))
+                query = query.Where(k => k.GiangVien == giangVien);
+
+            if (fromDate.HasValue)
+                query = query.Where(k => k.ThoiGianKhaiGiang >= fromDate.Value);
+
+            if (toDate.HasValue)
+                query = query.Where(k => k.ThoiGianKhaiGiang <= toDate.Value);
+
+            return query;
+        }
+
+        private List<string> GetDistinctGiangViens()
+        {
+            return _context.KhoaHocs
+                .Where(k => !string.IsNullOrEmpty(k.GiangVien))
+                .Select(k => k.GiangVien)
+                .Distinct()
+                .ToList();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

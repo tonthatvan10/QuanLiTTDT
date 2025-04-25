@@ -36,15 +36,15 @@ namespace TrungTamQuanLiDT.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var khoaHocDaDangKy = await _context.DangKyHocs
+            var danhSachDangKy = await _context.DangKyHocs
                 .Include(dk => dk.KhoaHoc)
                 .Where(dk => dk.MaHocVien == hocVien.MaHocVien &&
-                             dk.TrangThai != DangKyKhoaHocModel.TrangThaiDangKy.DaHuy)
-                .Select(dk => dk.KhoaHoc) // chỉ lấy thông tin khóa học
-                .Distinct()
+                             dk.TrangThai != DangKyKhoaHocModel.TrangThaiDangKy.DaHuy &&
+                             dk.KhoaHoc.ThoiGianKetThuc > DateTime.Now)
                 .ToListAsync();
 
-            return View(khoaHocDaDangKy);
+            return View(danhSachDangKy);
+
         }
 
         [Authorize(Roles = "HocVien")]

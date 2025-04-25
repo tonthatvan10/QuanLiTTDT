@@ -6,48 +6,89 @@
     var searchString = ViewBag.SearchString as string ?? "";
 }
 
-<h2>Danh sách học viên</h2>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Danh sách học viên</h2>
+        <a asp-action="Create" asp-controller="UserModels" class="btn btn-success">
+            <i class="fas fa-plus me-2"></i>Tạo mới
+        </a>
+    </div>
 
-<form method="get" class="mb-3">
-    <input type="text" name="searchString" value="@searchString" placeholder="Tìm theo tên học viên" class="form-control w-25 d-inline-block" />
-    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-</form>
+    <form method="get" class="mb-4">
+        <div class="input-group w-50">
+            <input type="text"
+                   name="searchString"
+                   value="@searchString"
+                   placeholder="Tìm theo tên học viên"
+                   class="form-control" />
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search me-2"></i>Tìm kiếm
+            </button>
+        </div>
+    </form>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Họ tên</th>
-            <th>Tài khoản</th>
-            <th>Email</th>
-            <th>Ngày sinh</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var hocVien in Model)
-        {
-            <tr>
-                <td>@hocVien.HoTen</td>
-                <td>@hocVien.TaiKhoan</td>
-                <td>@hocVien.Email</td>
-                <td>@hocVien.NgaySinh.ToString("dd/MM/yyyy")</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@hocVien.MaHocVien">Sửa</a> |
-                    <a asp-action="Details" asp-route-id="@hocVien.MaHocVien">Chi tiết</a> |
-                    <a asp-action="Delete" asp-route-id="@hocVien.MaHocVien">Xóa</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Tài khoản</th>
+                            <th>Email</th>
+                            <th>Ngày sinh</th>
+                            <th>Vai trò</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var hocVien in Model)
+                        {
+                            <tr>
+                                <td>@hocVien.HoTen</td>
+                                <td>@hocVien.TaiKhoan</td>
+                                <td>@hocVien.Email</td>
+                                <td>@hocVien.NgaySinh.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @(hocVien.Role == TrungTamQuanLiDT.Models.UserModel.UserRole.Admin ? "Quản trị" : "Học viên")
+                                </td>
+                                <td>
+                                    <a asp-action="Edit"
+                                       asp-route-id="@hocVien.MaHocVien"
+                                       class="btn btn-sm btn-warning me-1">
+                                        <i class="fas fa-edit"></i> Sửa
+                                    </a>
+                                    <a asp-action="Details"
+                                       asp-route-id="@hocVien.MaHocVien"
+                                       class="btn btn-sm btn-info me-1">
+                                        <i class="fas fa-info-circle"></i> Chi tiết
+                                    </a>
+                                    <a asp-action="Delete"
+                                       asp-route-id="@hocVien.MaHocVien"
+                                       class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-<nav>
-    <ul class="pagination">
-        @for (int i = 1; i <= totalPages; i++)
-        {
-            <li class="page-item @(i == currentPage ? "active" : "")">
-                <a class="page-link" href="?searchString=@searchString&page=@i">@i</a>
-            </li>
-        }
-    </ul>
-</nav>
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a class="page-link" href="?searchString=@searchString&page=@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+}

@@ -1,54 +1,106 @@
 ﻿@model TrungTamQuanLiDT.Models.KhoaHocModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Sửa thông tin khóa học";
+    // Giả định danh sách giảng viên từ ViewBag
+    var giangVienList = ViewBag.GiangVienList as List<string> ?? new List<string> { "Nguyễn Văn A", "Trần Thị B", "Lê Văn C" };
 }
 
-<h1>Edit</h1>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-3">Sửa thông tin khóa học</h1>
+            <hr />
+        </div>
+    </div>
 
-<h4>KhoaHocModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MaKhoaHoc" />
-            <div class="form-group">
-                <label asp-for="TenKhoaHoc" class="control-label"></label>
-                <input asp-for="TenKhoaHoc" class="form-control" />
-                <span asp-validation-for="TenKhoaHoc" class="text-danger"></span>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="Edit" id="editKhoaHocForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="MaKhoaHoc" />
+
+                        <div class="mb-3">
+                            <label asp-for="TenKhoaHoc" class="form-label fw-bold"></label>
+                            <input asp-for="TenKhoaHoc" class="form-control" placeholder="Nhập tên khóa học" />
+                            <span asp-validation-for="TenKhoaHoc" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="GiangVien" class="form-label fw-bold"></label>
+                            <select id="GiangVienSelect" class="form-select" onchange="toggleCustomGiangVien()">
+                                <option value="">Chọn giảng viên</option>
+                                @foreach (var giangVien in giangVienList)
+                                {
+                                    <option value="@giangVien" selected="@(giangVien == Model.GiangVien)">@giangVien</option>
+                                }
+                                <option value="custom">Khác (nhập mới)</option>
+                            </select>
+                            <input asp-for="GiangVien" id="GiangVien" class="form-control mt-2" placeholder="Nhập tên giảng viên mới" style="display: @(giangVienList.Contains(Model.GiangVien) ? "none" : "block");" />
+                            <span asp-validation-for="GiangVien" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ThoiGianKhaiGiang" class="form-label fw-bold"></label>
+                            <input asp-for="ThoiGianKhaiGiang" type="date" class="form-control" />
+                            <span asp-validation-for="ThoiGianKhaiGiang" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="HocPhi" class="form-label fw-bold"></label>
+                            <input asp-for="HocPhi" type="number" step="1000" class="form-control" placeholder="Nhập học phí (VNĐ)" />
+                            <span asp-validation-for="HocPhi" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SoLuongHocVienToiDa" class="form-label fw-bold"></label>
+                            <input asp-for="SoLuongHocVienToiDa" type="number" min="1" class="form-control" placeholder="Nhập số lượng tối đa" />
+                            <span asp-validation-for="SoLuongHocVienToiDa" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Quay lại
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Lưu
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="GiangVien" class="control-label"></label>
-                <input asp-for="GiangVien" class="form-control" />
-                <span asp-validation-for="GiangVien" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThoiGianKhaiGiang" class="control-label"></label>
-                <input asp-for="ThoiGianKhaiGiang" class="form-control" />
-                <span asp-validation-for="ThoiGianKhaiGiang" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HocPhi" class="control-label"></label>
-                <input asp-for="HocPhi" class="form-control" />
-                <span asp-validation-for="HocPhi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SoLuongHocVienToiDa" class="control-label"></label>
-                <input asp-for="SoLuongHocVienToiDa" class="form-control" />
-                <span asp-validation-for="SoLuongHocVienToiDa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Hiển thị input khi chọn "Khác" hoặc khi giảng viên hiện tại không có trong danh sách
+        function toggleCustomGiangVien() {
+            var select = document.getElementById('GiangVienSelect');
+            var input = document.getElementById('GiangVien');
+            if (select.value === 'custom') {
+                input.style.display = 'block';
+                input.focus();
+            } else {
+                input.style.display = 'none';
+                input.value = select.value; // Gán giá trị từ dropdown vào input ẩn
+            }
+        }
+
+        // Cập nhật giá trị giảng viên trước khi gửi form
+        document.getElementById('editKhoaHocForm').addEventListener('submit', function () {
+            var select = document.getElementById('GiangVienSelect');
+            var input = document.getElementById('GiangVien');
+            if (select.value !== 'custom') {
+                input.value = select.value;
+            }
+        });
+    </script>
 }

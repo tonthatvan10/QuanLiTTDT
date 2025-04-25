@@ -2,16 +2,40 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="bg-image text-center text-white d-flex justify-content-center align-items-center"
-     style="background-image: url('/images/BackgroundHomepage.jpg'); height: 100vh; background-size: cover; background-position: center;">
+<!-- Thêm Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-    <div class="bg-dark bg-opacity-50 p-5 rounded shadow">
-        <h1 class="display-4 mb-3">Chào mừng bạn đến với</h1>
-        <h2 class="display-4 fw-bold">Trung tâm Văn Tôn</h2>
-        <p class="lead mt-3">Nơi kết nối tri thức và đam mê học tập</p>
 
-        <a href="@Url.Action("Privacy", "Home")" class="btn btn-primary btn-lg mt-4">
-            Khám phá ngay
-        </a>
+<div class="hero-section text-center text-white d-flex justify-content-center align-items-center position-relative"
+     style="height: 100vh; background: linear-gradient(180deg, #1a2a44 0%, #2e4b6a 50%, #e6f4f1 100%); font-family: 'Poppins', sans-serif;">
+    <div class="content-wrapper">
+        <h1 class="display-1 fw-bold mb-4 animate__animated animate__fadeIn"
+            style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
+            VanGrow Edu
+        </h1>
+
+        <p class="lead fs-2 mb-5 animate__animated animate__fadeIn animate__delay-1s"
+           style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);">
+            Học hôm nay, dẫn đầu ngày mai!
+        </p>
+
+        <p class="mb-5">
+            <a href="@Url.Action("Privacy", "Home")"
+               class="btn btn-lg animate__animated animate__fadeIn animate__delay-2s"
+               style="background-color: #e6f4f1; border: 2px solid #2e4b6a; color: #1a2a44; transition: all 0.3s ease;"
+               onmouseover="this.style.backgroundColor='#2e4b6a'; this.style.color='#e6f4f1';"
+               onmouseout="this.style.backgroundColor='#e6f4f1'; this.style.color='#1a2a44';">
+                Khám phá ngay
+            </a>
+        </p>
+    </div>
+
+    <!-- Phần nội dung bên dưới -->
+    <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-center pb-5">
+        <div class="d-flex align-items-center">
+        </div>
     </div>
 </div>
+
+<!-- Thêm Animate.css để tạo hiệu ứng -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
